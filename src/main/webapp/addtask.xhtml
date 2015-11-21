@@ -12,30 +12,36 @@
     <f:event type="preRenderView" listener="#{camundaTaskForm.startProcessInstanceByKeyForm()}" />
   </f:metadata>
   <h:head>
-    <title>Place Order</title>
+    <title>TODOs!</title>
+    
+    <h:dataTable value="#{todoController.taskList}" var="todo"
+    	styleClass="todoTable"
+    	headerClass="todoTableHeader"
+    	rowClasses="todoTableOddRow,todoTableEvenRow">
+    	<h:column>
+    	<f:facet name="header">Task</f:facet>
+    		#{todo.title}
+    	</h:column>
+    	<h:column>
+    	<f:facet name="header">Description</f:facet>
+    		#{todo.description}
+    	</h:column>
+    </h:dataTable>
+    
   </h:head>
   <h:body>
-    <h1>Select your pizza</h1>
+    <h3>Add your Task!</h3>
     <h:form id="submitForm">
       <h:panelGrid columns="2">
 
-          <label for="pizza">Pizza</label>
-          <h:selectOneMenu id="pizza" value="#{processVariables['pizza']}">
-              <f:selectItem itemValue="Margarita" itemLabel="Margarita"/>
-              <f:selectItem itemValue="Salami" itemLabel="Salami"/>
-              <f:selectItem itemValue="Tonno" itemLabel="Tonno"/>
-              <f:selectItem itemValue="Prosciutto" itemLabel="Prosciutto"/>
-          </h:selectOneMenu>
-
-
-          <label for="customer">Customer</label>
+          <label for="title">Task</label>
           <!-- create process variables using the processVariables map. -->
-          <h:inputText id="customer" value="#{processVariables['customer']}" required="true" />
+          <h:inputText id="title" value="#{processVariables['title']}" required="true" />
 
 
-          <label for="address">Address</label>
+          <label for="description">Description</label>
           <!-- create process variables using the processVariables map. -->
-          <h:inputText id="address" value="#{processVariables['address']}" required="true" />
+          <h:inputText id="description" value="#{processVariables['description']}" required="true" />
 
       </h:panelGrid>
 
@@ -43,7 +49,7 @@
 
            NOTE: Syntax is different when working on user task forms, see file "approveLoanRequest.xhtml".
       -->
-      <h:commandButton id="submit_button" value="Order Pizza" action="#{camundaTaskForm.completeProcessInstanceForm()}" />
+      <h:commandButton id="submit_button" value="Add Task" action="#{camundaTaskForm.completeProcessInstanceForm()}" />
 
       <h:messages style="color:red;margin:8px;" />
     </h:form>
