@@ -1,6 +1,7 @@
 package we.are.awesome;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.GeneratedValue;
 import java.io.Serializable;
 
 @Entity
@@ -9,8 +10,10 @@ public class TodoEntity implements Serializable {
   private static  final long serialVersionUID = 1L;
 
 	@Id
-	protected String title;
-	  
+	@GeneratedValue
+	protected Long id;
+	
+	protected String title;	  
 
 	protected String description;
 	  
@@ -37,6 +40,10 @@ public class TodoEntity implements Serializable {
 	
 	public String getDescription() {
 		return description;
+	}
+	
+	public Long getId(){
+		return id;
 	}
 }
 

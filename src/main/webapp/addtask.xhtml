@@ -14,20 +14,23 @@
   <h:head>
     <title>TODOs!</title>
     
-    <h:dataTable value="#{todoController.getTaskList}" var="todo">
+    <h:dataTable value="#{todoController.taskList}" var="todo"
+    	styleClass="todoTable"
+    	headerClass="todoTableHeader"
+    	rowClasses="todoTableOddRow,todoTableEvenRow">
     	<h:column>
-    		<f:facet name="header">Todo</f:facet>
+    	<f:facet name="header">Task</f:facet>
     		#{todo.title}
     	</h:column>
     	<h:column>
-    		<f:facet name="header">Description</f:facet>
+    	<f:facet name="header">Description</f:facet>
     		#{todo.description}
     	</h:column>
     </h:dataTable>
     
   </h:head>
   <h:body>
-    <h1>Add your Task!</h1>
+    <h3>Add your Task!</h3>
     <h:form id="submitForm">
       <h:panelGrid columns="2">
 

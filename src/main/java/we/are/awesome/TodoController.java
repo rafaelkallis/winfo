@@ -1,9 +1,11 @@
 package we.are.awesome;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.ejb.Stateless;
 import javax.enterprise.context.ConversationScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -15,7 +17,7 @@ import javax.persistence.metamodel.EntityType;
 import org.camunda.bpm.engine.cdi.BusinessProcess;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 
-@ConversationScoped
+@Stateless
 @Named
 public class TodoController {
 	
@@ -25,58 +27,45 @@ public class TodoController {
 	@PersistenceContext
 	private EntityManager entityManager;
 	
-	private TodoDAO todoCache;
-	
+	//all tasks
 	private List<TodoDAO> taskList;
+	//local task
+	private String titleCache;
 	
 	public void addTask(DelegateExecution delegateExecution){
-		String title 			= (String) delegateExecution.getVariable("title");
+		String title 				= (String) delegateExecution.getVariable("title");
 		String description 		= (String) delegateExecution.getVariable("description");
 		TodoEntity todoEntity 	= new TodoEntity(title,description);
 		
 		entityManager.persist(todoEntity);
 		entityManager.flush();
+		
+		delegateExecution.removeVariable("title");
+		delegateExecution.removeVariable("description");
+		delegateExecution.setVariable("todoId", todoEntity.getId());
 	}
 	
-	public void removeTask(DelegateExecution delegateExecution){
-		
-		String title			= (String) delegateExecution.getVariable("title");
-		
-		entityManager.remove(entityManager.find(TodoEntity.class, title));
+	public void removeTask(DelegateExecution delegateExecution){		
+		entityManager.remove(entityManager.find(TodoEntity.class, businessProcess.getVariable("todoId")));
 		entityManager.flush();
 		
-		delegateExecution.removeVariables();
+		delegateExecution.removeVariable("title");
 	}
 	
 	public List<TodoDAO> getTaskList(){
-		List<TodoDAO> todoList = new LinkedList<TodoDAO>();
-		
-		for(EntityType<?> todo : entityManager.getMetamodel().getEntities()){
-			String title = ((TodoEntity)todo).getTitle();
-			String description = ((TodoEntity)todo).getDescription();
-			todoList.add(new TodoDAO(title,description));
-		}
-		
-		return todoList;
-	}
-	
-	public List<TodoDAO> getTaskList2(){
-		List<TodoDAO> todoList = new LinkedList<TodoDAO>();
+		this.taskList = new ArrayList<TodoDAO>();	
+
 		Query query = entityManager.createQuery("SELECT t FROM TodoEntity t");
-		for(TodoEntity todo : (Collection<TodoEntity>)query.getResultList()){
-			String title = todo.getTitle();
-			String description = todo.getDescription();
-			todoList.add(new TodoDAO(title,description));
+		List<TodoEntity> rs = query.getResultList();
+		for(TodoEntity todo : rs){
+			this.taskList.add(new TodoDAO(todo.getTitle(),todo.getDescription()));
 		}
-		return todoList;
+		return this.taskList;
+
 	}
 	
-	public TodoDAO getTodoCache(){
-		if (todoCache == null){
-			TodoEntity temp_entity = entityManager.find(TodoEntity.class, businessProcess.getVariable("title"));
-			todoCache = new TodoDAO(temp_entity.getTitle(),temp_entity.getDescription());
-		}
-		return todoCache;
+	public String getTitleCache(){
+		this.titleCache = this.entityManager.find(TodoEntity.class, businessProcess.getVariable("todoId")).getTitle();
+		return this.titleCache;
 	}
-	
 }
