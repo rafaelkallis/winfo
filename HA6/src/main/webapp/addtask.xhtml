@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:f="http://java.sun.com/jsf/core">
+
+<f:view>
+  <f:metadata>
+    <!-- Start a new process instance. The Process Definition Key is read internally from
+         request parameters and cached in the CDI conversation scope.
+    -->
+    <f:event type="preRenderView" listener="#{camundaTaskForm.startProcessInstanceByKeyForm()}" />
+  </f:metadata>
+  <h:head>
+    <title>TODOs!</title>
+    
+    <h:dataTable value="#{todoController.taskList}" var="todo"
+    	styleClass="todoTable"
+    	headerClass="todoTableHeader"
+    	rowClasses="todoTableOddRow,todoTableEvenRow">
+    	<h:column>
+    	<f:facet name="header">Task</f:facet>
+    		#{todo.title}
+    	</h:column>
+    	<h:column>
+    	<f:facet name="header">Description</f:facet>
+    		#{todo.description}
+    	</h:column>
+    </h:dataTable>
+    
+  </h:head>
+  <h:body>
+    <h3>Add your Task!</h3>
+    <h:form id="submitForm">
+      <h:panelGrid columns="2">
+
+          <label for="title">Task</label>
+          <!-- create process variables using the processVariables map. -->
+          <h:inputText id="title" value="#{processVariables['title']}" required="true" />
+
+
+          <label for="description">Description</label>
+          <!-- create process variables using the processVariables map. -->
+          <h:inputText id="description" value="#{processVariables['description']}" required="true" />
+
+      </h:panelGrid>
+
+      <!-- The button starts a new process instance. This ends the conversation and redirects us to the tasklist.
+
+           NOTE: Syntax is different when working on user task forms, see file "approveLoanRequest.xhtml".
+      -->
+      <h:commandButton id="submit_button" value="Add Task" action="#{camundaTaskForm.completeProcessInstanceForm()}" />
+
+      <h:messages style="color:red;margin:8px;" />
+    </h:form>
+  </h:body>
+</f:view>
+</html>
