@@ -16,6 +16,8 @@ public class TodoEntity implements Serializable {
 	protected String title;	  
 
 	protected String description;
+	
+	protected Boolean isDone;
 	  
 	public TodoEntity(String title, String description){
 		this.title = title;
