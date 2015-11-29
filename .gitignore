@@ -1,4 +1,3 @@
-HA5/target/*
-HA6/target/*
-
-.metadata/.plugins/
+.log
+.plugins/
+*.class
