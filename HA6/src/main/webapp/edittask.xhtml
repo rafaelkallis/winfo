@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:f="http://java.sun.com/jsf/core">
+
+<f:view>
+  <f:metadata>
+    <!-- Start a new process instance. The Process Definition Key is read internally from
+         request parameters and cached in the CDI conversation scope.
+    -->
+    <f:event type="preRenderView" listener="#{camundaTaskForm.startTaskForm()}" />
+  </f:metadata>
+  <h:head>
+    <title>Edit task</title>
+    
+  
+    
+  </h:head>
+  <h:body>
+    <h:form id="submitForm">
+      <h:panelGrid columns="2">
+       <label for="title">Title</label>
+          <!-- create process variables using the processVariables map. -->
+          <h:inputText id="title" value="#{edittaskController.editDAO.title}" required="true" />
+
+
+          <label for="description">Description</label>
+          <!-- create process variables using the processVariables map. -->
+          <h:inputText id="description" value="#{edittaskController.editDAO.description}" required="true" />
+
+      </h:panelGrid>
+
+      <h:commandButton id="edittask_button" value="Save edits" action="#{camundaTaskForm.completeTask()}" />
+
+      <h:messages style="color:red;margin:8px;" />
+    </h:form>
+  </h:body>
+</f:view>
+</html>

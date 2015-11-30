@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:f="http://java.sun.com/jsf/core">
+
+<f:view>
+  <f:metadata>
+    
+    <f:event type="preRenderView" listener="#{camundaTaskForm.startTaskForm()}" />
+  </f:metadata>
+  <h:head>
+    <title>Is this a free task or for a specific worker?</title>
+   
+ 
+      <h:form id="freetaskForm">   
+      <h:commandButton id="delegatedtask_button" value="Delegate task" action="#{camundaTaskForm.completeTask()}" />
+       <h:commandButton id="freetask_button" value="Free task" action="#{camundaTaskForm.completeTask()}" />
+    </h:form>
+  </h:body>
+</f:view>
+</html>

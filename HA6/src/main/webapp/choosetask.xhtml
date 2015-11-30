@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:f="http://java.sun.com/jsf/core">
+
+<f:view>
+  <f:metadata>
+    <!-- Start a new process instance. The Process Definition Key is read internally from
+         request parameters and cached in the CDI conversation scope.
+    -->
+    <f:event type="preRenderView" listener="#{camundaTaskForm.startTaskForm()}" />
+  </f:metadata>
+  <h:head>
+    <title>Choose a task</title>
+  
+          <h:selectOneMenu id="tasks" value="#{choosetaskController.chooseDAO.task}">
+              <f:selectItems itemValue="#{choosetaskController.chooseDAO.tasks}"/>
+          </h:selectOneMenu>
+ 
+      <h:form id="choosetaskForm">   
+      <h:commandButton id="choosetask_button" value="Choose task" action="#{camundaTaskForm.completeTask()}" />
+    </h:form>
+  </h:body>
+</f:view>
+</html>
