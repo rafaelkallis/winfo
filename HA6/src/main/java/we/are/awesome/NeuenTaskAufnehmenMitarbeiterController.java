@@ -2,7 +2,14 @@ package we.are.awesome;
 
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 
-public class NeuenTaskAufnehmenController extends ServiceTaskController{
+public class NeuenTaskAufnehmenMitarbeiterController extends ServiceTaskController {
+
+	public void call(String title, String description){
+		TaskEntity taskEntity = new TaskEntity(title,description);
+		
+		entityManager.persist(taskEntity);
+		entityManager.flush();
+	}
 
 	/*
 	 * (non-Javadoc)
@@ -10,7 +17,6 @@ public class NeuenTaskAufnehmenController extends ServiceTaskController{
 	 * ("taskTitle","taskDescription","loggedUserId")
 	 * - "taskTitle"
 	 * - "taskDescription"
-	 * + "taskId"
 	 */
 	@Override
 	public void call(DelegateExecution delegateExecution) {
@@ -18,12 +24,9 @@ public class NeuenTaskAufnehmenController extends ServiceTaskController{
 		String description = (String) delegateExecution.getVariable("taskDescription");
 		
 		TaskEntity taskEntity = new TaskEntity(title,description);
-		
-		taskEntity.setNeedsReview(false);
-		
+				
 		entityManager.persist(taskEntity);
 		
-		delegateExecution.setVariable("taskId", taskEntity.id);
 		delegateExecution.removeVariable("taskTitle");
 		delegateExecution.removeVariable("taskDescription");
 		

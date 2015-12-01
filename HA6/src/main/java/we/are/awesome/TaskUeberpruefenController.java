@@ -2,7 +2,7 @@ package we.are.awesome;
 
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 
-public class TaskAlsErledigtMarkierenController extends ServiceTaskController {
+public class TaskUeberpruefenController extends ServiceTaskController {
 
 	/*
 	 * (non-Javadoc)
@@ -11,15 +11,13 @@ public class TaskAlsErledigtMarkierenController extends ServiceTaskController {
 	 */
 	@Override
 	public void call(DelegateExecution delegateExecution) {
-		//TODO parseLong
-		Long taskId = (Long)delegateExecution.getVariable("taskId");
+		Long taskId = (Long) delegateExecution.getVariable("taskId");
+		TaskEntity taskEntity = super.getTaskEntity(taskId);
 		
-		TaskEntity taskEntity = entityManager.find(TaskEntity.class, taskId);
+		taskEntity.setNeedsReview(false);
 		
-		taskEntity.setIsDone(true);				
 		super.entityManager.merge(taskEntity);
 		super.entityManager.flush();
-		
-		delegateExecution.removeVariable("taskId");
 	}
+
 }
