@@ -1,0 +1,58 @@
+Reference:
+<- out
+-> in
+
+* * *
+
+login.xhtml
+
+<- LoginController.getUsers()	(returns List<UserDAO>)
+-> LoginController.login(Long userId) // something like user.getId()
+-> LoginController.register(String userName,Boolean isProjektleiter)
+
+* * *
+
+mitarbeiter_workspace.xhtml
+
+<- MitarbeiterWorkspaceController.getUserTaskList() (returns List<TaskDAO>)
+-> MitarbeiterWorkspaceController.taskZurueckweisen(Long taskId)
+-> MitarbeiterWorkspaceController.taskBearbeiten(Long taskId)
+-> MitarbeiterWorkspaceController.taskVerschieben(Long taskId)
+-> MitarbeiterWorkspaceController.newTask(String title, String description)
+-> MitarbeiterWorkspaceController.logout()
+ 
+
+* * *
+
+projektleiter_workspace.xhtml
+
+<- ProjektleiterWorkspace.getTaskListForReview() 					//(returns List<TaskDAO>) //only tasks that need review (mitarbeiter submitted or refused)
+-> ProjektleiterWorkspace.reviewTask(Long taskId)
+-> ProjectleiterWorkspace.newTask(String name, String description)
+-> ProjectleiterWorkspace.logout()
+
+* * *
+
+entscheiden_ob_freier_oder_delegierter_task.xhtml
+
+<- EntscheidenObFreierOderDelegierterTaskController.getTaskDAO() 				//(returns TaskDAO)
+-> EntscheidenObFreierOderDelegierterTaskController.call(Boolean isFreierTask)	// user's selection
+
+* * *
+
+person_auswaehlen.xhtml
+
+<- PersonAuswaehlenController.getTaskDAO() 						//(returns TaskDAO)
+<- PersonAuswaehlenController.getMitarbeiterList() 				//(returns List<UserDAO>)
+<- PersonAuswaehlenController.getNAssignedTasks(Long userId) 	// returns number of assigned tasks for given userId
+-> PersonAuswaehlenController.chooseUser(Long userId) 			// userId for user who is going to do the task
+
+* * *
+
+
+task_bearbeiten.xhtml
+
+<- TaskBearbeitenController.getTaskDAO() (returns TaskDAO) //view the current task
+-> TaskBearbeitenController.finish() // button for task completion (finish)
+
+* * *
