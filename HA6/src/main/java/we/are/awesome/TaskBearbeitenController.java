@@ -6,7 +6,7 @@ public class TaskBearbeitenController extends Controller{
 	
 	public void finish(){
 		try {
-			super.taskForm.completeProcessInstanceForm();
+			super.taskForm.completeTask();
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}

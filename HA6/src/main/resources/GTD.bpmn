@@ -47,7 +47,7 @@
       <bpmn2:incoming>SequenceFlow_29</bpmn2:incoming>
       <bpmn2:outgoing>SequenceFlow_55</bpmn2:outgoing>
     </bpmn2:serviceTask>
-    <bpmn2:exclusiveGateway id="ExclusiveGateway_3" name="gewuenschde Aktion?">
+    <bpmn2:exclusiveGateway id="ExclusiveGateway_3" name="gewuenschte Aktion?">
       <bpmn2:incoming>SequenceFlow_2</bpmn2:incoming>
       <bpmn2:outgoing>SequenceFlow_15</bpmn2:outgoing>
       <bpmn2:outgoing>SequenceFlow_29</bpmn2:outgoing>
