@@ -21,7 +21,7 @@
 
         <label>Mitarbeiter auswählen</label>
         <br>
-        <h:selectOneMenu value="#{PersonAuswaehlenController.selectedUsedId}" >
+        <h:selectOneMenu value="#{PersonAuswaehlenController.selectedUserId}" >
             <f:selectItems value="#{PersonAuswaehlenController.getMitarbeiterUserList()}" var="user" 
             itemlabel="#{user.firstName}" itemValue="#{user.id}"/>
         </h:selectOneMenu>
