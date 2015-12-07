@@ -8,7 +8,21 @@ import javax.persistence.Query;
 
 public class LoginController extends Controller { 
 	
+	/*
+	 * Used on both login & registration
+	 */
 	private Boolean isProjektleiter;
+	
+	/*
+	 * Used on login
+	 */
+	private Long selectedUserId;
+	
+	/*
+	 * Used on registration
+	 */
+	private String userName;
+	
 	
 	/*
 	 * + "loggedUserId"
@@ -44,6 +58,22 @@ public class LoginController extends Controller {
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
+	}
+	
+	public void setSelectedUserId(Long selectedUserId){
+		this.selectedUserId = selectedUserId;
+	}
+	
+	public Long getSelectedUserId(){
+		return this.selectedUserId;
+	}
+	
+	public void setUserName(String userName){
+		this.userName = userName;
+	}
+	
+	public String getUserName(){
+		return this.userName;
 	}
 	
 	public Boolean getIsProjektleiter(){

@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:f="http://java.sun.com/jsf/core">
+
+<f:view>
+  <f:metadata>
+    <!-- Start a new process instance. The Process Definition Key is read internally from
+         request parameters and cached in the CDI conversation scope.
+    -->
+    <f:event type="preRenderView" listener="#{camundaTaskForm.startProcessInstanceByKeyForm()}" />
+  </f:metadata>
+  <h:head>
+  
+  </h:head>
+  <h:body>
+    <h1></h1>
+    <div id="leftdock" align="left">
+    <h:form id="auswahlForm">
+
+        <label>Mitarbeiter auswählen</label>
+        <br>
+        <h:selectOneMenu value="#{PersonAuswaehlenController.selectedUsedId}" >
+            <f:selectItems value="#{PersonAuswaehlenController.getMitarbeiterUserList()}" var="user" 
+            itemlabel="#{user.firstName}" itemValue="#{user.id}"/>
+        </h:selectOneMenu>
+            <br/><br/>
+            <label>Ausgewählter Mitarbeiter hat momentan </label>  
+            <h:outputLabel value="#{PersonAuswaehlenController.getNAssignedTasks(PersonAuswaehlenController.assignedUserId)}"/> 
+            <label> zugewiesene Tasks</label>
+	        <br>
+      <h:commandButton id="personwaehlen_button" value="Auswahl bestätigen" action="#{PersonAuswaehlenController.chooseUser(PersonAuswaehlenController.selectedUserId)}" />
+
+    </h:form>
+    </div>
+       
+  </h:body>
+</f:view>
+</html>

@@ -8,7 +8,8 @@ import javax.persistence.Query;
 
 public class PersonAuswaehlenController extends Controller{
 	
-
+	private Long selectedUsedId;
+	
 	public void chooseUser(Long assignedUserId) {
 		super.businessProcess.setVariable("assignedUserId", assignedUserId);
 		
@@ -38,5 +39,13 @@ public class PersonAuswaehlenController extends Controller{
 	public Integer getNAssignedTasks(Long userId){		
 		Query query = super.entityManager.createQuery("SELECT COUNT(*) FROM TaskEntity WHERE assignedUserId='"+userId+"'");
 		return query.getFirstResult();
+	}
+	
+	public Long getSelectedUsedId(){
+		return this.selectedUsedId;
+	}
+	
+	public void setSelectedUserId(Long selectedUserId){
+		this.selectedUsedId = selectedUserId;
 	}
 }

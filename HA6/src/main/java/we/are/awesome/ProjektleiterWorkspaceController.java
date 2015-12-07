@@ -12,6 +12,10 @@ public class ProjektleiterWorkspaceController extends Controller {
 	private Boolean taskUeberpruefen 	= false;
 	private Boolean logout				= false;
 	
+	private Long 	selectedTaskId;
+	private String	title;
+	private String	description;
+	
 	
 	
 	/*
@@ -82,5 +86,29 @@ public class ProjektleiterWorkspaceController extends Controller {
 	
 	public Boolean getLogout(){
 		return this.logout;
+	}
+	
+	public Long getSelectedTaskId() {
+		return selectedTaskId;
+	}
+
+	public void setSelectedTaskId(Long selectedTaskId) {
+		this.selectedTaskId = selectedTaskId;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 }

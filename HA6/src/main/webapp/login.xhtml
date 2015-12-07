@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:f="http://java.sun.com/jsf/core">
+
+<f:view>
+  	<f:metadata>
+    <!-- Start a new process instance. The Process Definition Key is read internally from
+         request parameters and cached in the CDI conversation scope.
+    -->
+    	<f:event type="preRenderView" listener="#{camundaTaskForm.startProcessInstanceByKeyForm()}" />
+ 	</f:metadata>
+	<h:head></h:head>
+  	<h:body>
+		<div id="leftdock" align="left">
+			<h:form id="userForm">
+				<label >Login</label>
+				<br>
+				<h:selectOneMenu value="#{LoginController.selectedId}" >
+					<f:selectItems value="#{LoginController.getUsers()}" var="user" itemlabel="#{user.firstName}" itemValue="#{user.id}"/>
+				</h:selectOneMenu>
+				<br>
+				<h:commandButton id="login_button" value="Login" action="#{LoginController.login(LoginController.selectedId)}" />
+			</h:form>
+		</div>
+		<div id="rightdock" align="right" >
+			<h:form id="userForm">
+				<label>Registrieren</label>
+				<br/>
+				<label>Name eingeben</label>
+				<h:inputText value="#{LoginController.userName}" required="true" />
+				<br/>
+				<br/>
+				<label>Projektleiter</label>
+				<h:selectBooleanCheckbox value="#{LoginController.isProjektleiter}" />
+				<br/>
+				<h:commandButton id="register_button" value="Registrieren" action="#{LoginController.register(LoginController.userName, LoginController.isProjektleiter}" />
+				<br/>
+			</h:form>
+		</div>
+  	</h:body>
+</f:view>
+</html>
