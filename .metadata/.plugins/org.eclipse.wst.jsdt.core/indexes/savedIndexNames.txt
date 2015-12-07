@@ -1,8 +1,0 @@
-INDEX VERSION 1.3+/Users/rafael/Workspace/UZH/businessinformatics/winfo/.metadata/.plugins/org.eclipse.wst.jsdt.core/indexes
-2168739793.index
-407701099.index
-382415636.index
-1060895702.index
-2346566218.index
-1112794982.index
-986031664.index
