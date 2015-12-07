@@ -119,7 +119,7 @@
       <bpmn2:outgoing>SequenceFlow_6</bpmn2:outgoing>
     </bpmn2:userTask>
     <bpmn2:sequenceFlow id="SequenceFlow_6" name="" sourceRef="UserTask_1" targetRef="ExclusiveGateway_2"/>
-    <bpmn2:serviceTask id="UserTask_8" camunda:formKey="app:neuen_task_aufnehmen_projektleiter.jsf" camunda:expression="${NeuenTaskAufnehmenController(execution)}" name="Neuen Task Aufnehmen">
+    <bpmn2:serviceTask id="UserTask_8" camunda:formKey="app:neuen_task_aufnehmen_projektleiter.jsf" camunda:expression="${NeuenTaskAufnehmenController.call(execution)}" name="Neuen Task Aufnehmen">
       <bpmn2:incoming>SequenceFlow_39</bpmn2:incoming>
       <bpmn2:outgoing>SequenceFlow_36</bpmn2:outgoing>
     </bpmn2:serviceTask>
