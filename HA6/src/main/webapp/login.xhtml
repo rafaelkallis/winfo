@@ -17,11 +17,11 @@
 			<h:form id="userForm">
 				<label >Login</label>
 				<br>
-				<h:selectOneMenu value="#{LoginController.selectedId}" >
+				<h:selectOneMenu value="#{LoginController.selectedUserId}" >
 					<f:selectItems value="#{LoginController.getUsers()}" var="user" itemlabel="#{user.firstName}" itemValue="#{user.id}"/>
 				</h:selectOneMenu>
 				<br>
-				<h:commandButton id="login_button" value="Login" action="#{LoginController.login(LoginController.selectedId)}" />
+				<h:commandButton id="login_button" value="Login" action="#{LoginController.login(LoginController.selectedUserId)}" />
 			</h:form>
 		</div>
 		<div id="rightdock" align="right" >
