@@ -14,6 +14,6 @@ public class TaskBearbeitenController extends Controller{
 	
 	public TaskDAO getTaskDAO(){
 		Long taskId = super.businessProcess.getVariable("taskId");
-		return super.getTaskDAO(taskId);
+		return new TaskDAO(super.getTaskEntity(taskId));
 	}
 }
