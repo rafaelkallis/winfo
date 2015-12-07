@@ -16,11 +16,11 @@
 		<div id="leftdock" align="left">
 			<h:form id="userForm">
 				<label >Login</label>
-				<br>
+				<br/>
 				<h:selectOneMenu value="#{LoginController.selectedUserId}" >
 					<f:selectItems value="#{LoginController.getUsers()}" var="user" itemlabel="#{user.firstName}" itemValue="#{user.id}"/>
 				</h:selectOneMenu>
-				<br>
+				<br/>
 				<h:commandButton id="login_button" value="Login" action="#{LoginController.login(LoginController.selectedUserId)}" />
 			</h:form>
 		</div>
