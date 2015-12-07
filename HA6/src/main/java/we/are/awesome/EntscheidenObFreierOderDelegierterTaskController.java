@@ -27,7 +27,7 @@ public class EntscheidenObFreierOderDelegierterTaskController extends Controller
 	
 	public TaskDAO getTaskDAO(){
 		Long taskId = super.businessProcess.getVariable("taskId");
-		return super.getTaskDAO(taskId);
+		return new TaskDAO(super.getTaskEntity(taskId));
 	}
 
 	public void setIsFreierterTask(Boolean isFreierTask) {
