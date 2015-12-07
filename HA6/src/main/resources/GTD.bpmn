@@ -170,7 +170,7 @@
       <bpmn2:incoming>SequenceFlow_72</bpmn2:incoming>
     </bpmn2:endEvent>
     <bpmn2:sequenceFlow id="SequenceFlow_72" name="" sourceRef="ServiceTask_1" targetRef="EndEvent_8"/>
-    <bpmn2:serviceTask id="ServiceTask_9" name="Person Zuweisen">
+    <bpmn2:serviceTask id="ServiceTask_9" camunda:expression="#{PersonZuweisenController.call(execution)}" name="Person Zuweisen">
       <bpmn2:incoming>SequenceFlow_63</bpmn2:incoming>
       <bpmn2:outgoing>SequenceFlow_73</bpmn2:outgoing>
     </bpmn2:serviceTask>
