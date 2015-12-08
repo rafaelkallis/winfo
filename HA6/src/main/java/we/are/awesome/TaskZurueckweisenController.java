@@ -1,18 +1,13 @@
 package we.are.awesome;
 
-import org.camunda.bpm.engine.delegate.DelegateExecution;
+import javax.ejb.Stateless;
+import javax.inject.Named;
 
-public class TaskZurueckweisenController extends ServiceTaskController{
+@Named
+@Stateless
+public class TaskZurueckweisenController extends Controller{
 	
-	/*
-	 * ("taskId","loggeduserId")
-	 *  - "taskId"
-	 *  - "loggedUserId"
-	 */
-	@Override
-	public void call(DelegateExecution delegateExecution) {
-		//TODO parseLong
-		Long taskId = (Long)delegateExecution.getVariable("taskId");
+	public void call(Long taskId) {
 		TaskEntity taskEntity = entityManager.find(TaskEntity.class, taskId);
 		
 		taskEntity.setNeedsReview(true);
@@ -20,8 +15,5 @@ public class TaskZurueckweisenController extends ServiceTaskController{
 		
 		entityManager.merge(taskEntity);
 		entityManager.flush();
-		
-		delegateExecution.removeVariable("taskId");
-		delegateExecution.removeVariable("loggedUserId");
 	}
 }

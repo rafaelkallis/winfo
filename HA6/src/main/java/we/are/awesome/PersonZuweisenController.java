@@ -1,22 +1,18 @@
 package we.are.awesome;
 
-import org.camunda.bpm.engine.delegate.DelegateExecution;
+import javax.ejb.Stateless;
+import javax.inject.Named;
 
-public class PersonZuweisenController extends ServiceTaskController {
+@Named
+@Stateless
+public class PersonZuweisenController extends Controller {
 
-	@Override
-	public void call(DelegateExecution delegateExecution) {
-		Long taskId = (Long) delegateExecution.getVariable("taskId");
-		Long assignedUserId = (Long) delegateExecution.getVariable("assignedUserId");
-
+	public void call(Long taskId,Long assignedUserId) {
 		TaskEntity taskEntity = entityManager.find(TaskEntity.class, taskId);
 		
 		taskEntity.setAssignedUserId(assignedUserId);
+		
 		entityManager.merge(taskEntity);
 		entityManager.flush();
-		
-		delegateExecution.removeVariable("taskId");
-		delegateExecution.removeVariable("assignedUserId");
 	}
-
 }

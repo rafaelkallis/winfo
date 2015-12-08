@@ -20,19 +20,19 @@
     <h:form id="bearbeitenForm">
 
           <label>Ausgewählter Task</label>
-          <br>
+          <br/>
         <label>Titel: </label>
-         <h:outputLabel value="#{TaskBearbeitenController.getTaskDAO().title}"/>
+         <h:outputLabel value="#{taskBearbeitenController.getTaskDAO().title}"/>
 
- <br>
+ <br/>
   <label >Beschreibung: </label>
-  <h:outputLabel value="#{TaskBearbeitenController.getTaskDAO().description}"/>
+  <h:outputLabel value="#{taskBearbeitenController.getTaskDAO().description}"/>
 
- <br>
+ <br/>
           
-	<br>
-      <h:commandButton id="bearbeiten_button" value="Bearbeiten" action="#{TaskBearbeitenController.finish()}" />
-      	<br>
+	<br/>
+      <h:commandButton id="bearbeiten_button" value="Bearbeiten" action="#{taskBearbeitenController.completeTask()}" />
+      	<br/>
  </div>
    
   </h:body>

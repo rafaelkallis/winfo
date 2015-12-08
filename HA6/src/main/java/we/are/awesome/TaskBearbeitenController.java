@@ -1,16 +1,11 @@
 package we.are.awesome;
 
-import java.io.IOException;
+import javax.ejb.Stateless;
+import javax.inject.Named;
 
+@Named
+@Stateless
 public class TaskBearbeitenController extends Controller{
-	
-	public void finish(){
-		try {
-			super.taskForm.completeTask();
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		}
-	}
 	
 	public TaskDAO getTaskDAO(){
 		Long taskId = super.businessProcess.getVariable("taskId");

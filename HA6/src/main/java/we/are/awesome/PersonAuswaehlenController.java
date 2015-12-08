@@ -1,24 +1,15 @@
 package we.are.awesome;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.ejb.Stateless;
+import javax.inject.Named;
 import javax.persistence.Query;
 
+@Named
+@Stateless
 public class PersonAuswaehlenController extends Controller{
-	
-	private Long selectedUsedId;
-	
-	public void chooseUser(Long assignedUserId) {
-		super.businessProcess.setVariable("assignedUserId", assignedUserId);
-		
-		try {
-			super.taskForm.completeProcessInstanceForm();
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		}
-	}
 	
 	public TaskDAO getTaskDAO(){
 		Long taskId = super.businessProcess.getVariable("taskId");
@@ -36,16 +27,13 @@ public class PersonAuswaehlenController extends Controller{
 		return userList;
 	}
 	
-	public Integer getNAssignedTasks(Long userId){		
-		Query query = super.entityManager.createQuery("SELECT COUNT(*) FROM TaskEntity WHERE assignedUserId='"+userId+"'");
-		return query.getFirstResult();
-	}
-	
-	public Long getSelectedUsedId(){
-		return this.selectedUsedId;
-	}
-	
-	public void setSelectedUserId(Long selectedUserId){
-		this.selectedUsedId = selectedUserId;
+	public Integer getNAssignedTasks(){		
+		Long userId = super.businessProcess.getVariable("selectedUserId");
+		if(userId == null){
+			return 0;
+		}else{
+			Query query = super.entityManager.createQuery("SELECT COUNT(*) FROM TaskEntity WHERE assignedUserId='"+userId+"'");
+			return query.getFirstResult();
+		}
 	}
 }

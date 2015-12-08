@@ -1,8 +1,11 @@
 package we.are.awesome;
 
-import org.camunda.bpm.engine.delegate.DelegateExecution;
+import javax.ejb.Stateless;
+import javax.inject.Named;
 
-public class NeuenTaskAufnehmenMitarbeiterController extends ServiceTaskController {
+@Named
+@Stateless
+public class NeuenTaskAufnehmenMitarbeiterController extends Controller {
 
 	public void call(String title, String description){
 		TaskEntity taskEntity = new TaskEntity(title,description);
@@ -11,25 +14,21 @@ public class NeuenTaskAufnehmenMitarbeiterController extends ServiceTaskControll
 		entityManager.flush();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see we.are.awesome.ServiceTaskController#call(org.camunda.bpm.engine.delegate.DelegateExecution)
-	 * ("taskTitle","taskDescription","loggedUserId")
-	 * - "taskTitle"
-	 * - "taskDescription"
-	 */
-	@Override
-	public void call(DelegateExecution delegateExecution) {
-		String title = (String) delegateExecution.getVariable("taskTitle");
-		String description = (String) delegateExecution.getVariable("taskDescription");
-		
-		TaskEntity taskEntity = new TaskEntity(title,description);
-				
-		entityManager.persist(taskEntity);
-		
-		delegateExecution.removeVariable("taskTitle");
-		delegateExecution.removeVariable("taskDescription");
-		
-		entityManager.flush();
-	}
+//	/*
+//	 * (non-Javadoc)
+//	 * @see we.are.awesome.ServiceTaskController#call(org.camunda.bpm.engine.delegate.DelegateExecution)
+//	 * ("taskTitle","taskDescription","loggedUserId")
+//	 * - "taskTitle"
+//	 * - "taskDescription"
+//	 */
+//	public void call(String title, String description) {
+//		String title = (String) delegateExecution.getVariable("taskTitle");
+//		String description = (String) delegateExecution.getVariable("taskDescription");
+//		
+//		TaskEntity taskEntity = new TaskEntity(title,description);
+//				
+//		entityManager.persist(taskEntity);
+//		
+//		entityManager.flush();
+//	}
 }

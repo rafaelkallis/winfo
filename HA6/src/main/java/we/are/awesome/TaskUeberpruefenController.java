@@ -1,17 +1,18 @@
 package we.are.awesome;
 
-import org.camunda.bpm.engine.delegate.DelegateExecution;
+import javax.ejb.Stateless;
+import javax.inject.Named;
 
-public class TaskUeberpruefenController extends ServiceTaskController {
+@Named
+@Stateless
+public class TaskUeberpruefenController extends Controller {
 
 	/*
 	 * (non-Javadoc)
 	 * @see we.are.awesome.ServiceTaskController#call(org.camunda.bpm.engine.delegate.DelegateExecution)
 	 * ("taskId","loggedUserId")
 	 */
-	@Override
-	public void call(DelegateExecution delegateExecution) {
-		Long taskId = (Long) delegateExecution.getVariable("taskId");
+	public void call(Long taskId) {
 		TaskEntity taskEntity = super.getTaskEntity(taskId);
 		
 		taskEntity.setNeedsReview(false);

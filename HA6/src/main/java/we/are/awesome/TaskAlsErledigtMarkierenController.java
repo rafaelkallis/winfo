@@ -1,25 +1,18 @@
 package we.are.awesome;
 
-import org.camunda.bpm.engine.delegate.DelegateExecution;
+import javax.ejb.Stateless;
+import javax.inject.Named;
 
-public class TaskAlsErledigtMarkierenController extends ServiceTaskController {
+@Named
+@Stateless
+public class TaskAlsErledigtMarkierenController extends Controller {
 
-	/*
-	 * (non-Javadoc)
-	 * @see we.are.awesome.ServiceTaskController#call(org.camunda.bpm.engine.delegate.DelegateExecution)
-	 * ("taskId","loggedUserId")
-	 */
-	@Override
-	public void call(DelegateExecution delegateExecution) {
-		//TODO parseLong
-		Long taskId = (Long)delegateExecution.getVariable("taskId");
+	public void call(Long taskId) {
 		
-		TaskEntity taskEntity = entityManager.find(TaskEntity.class, taskId);
+		TaskEntity taskEntity = super.entityManager.find(TaskEntity.class, taskId);
 		
 		taskEntity.setIsDone(true);				
 		super.entityManager.merge(taskEntity);
 		super.entityManager.flush();
-		
-		delegateExecution.removeVariable("taskId");
 	}
 }
