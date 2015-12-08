@@ -17,16 +17,16 @@
                 <br/>
                 <label>Titel</label>
                 <br/>
-                <label title="#{EntscheidenObFreierOderDelegierterTaskController.getTaskDAO().title}"></label>
+                <label>"#{entscheidenObFreierOderDelegierterTaskController.getTaskDAO().title}"</label>
                 <br/>
                 <label>Description</label>
                 <br/>
-                <label title="#{EntscheidenObFreierOderDelegierterTaskController.getTaskDAO().description}"></label>
+                <label>"#{entscheidenObFreierOderDelegierterTaskController.getTaskDAO().description}"</label>
                 <br/>
                 <br/>
-                <label>Ist der ausgewählte Task frei?</label> <h:selectBooleanCheckbox  value="#{processVariable['isFreierTask']}"/>
+                <label>Ist der ausgewählte Task frei?</label> <h:selectBooleanCheckbox  value="#{processVariables['isFreierTask']}"/>
                 <br/>
-                <h:commandButton id="freiertask_button" value="Auswahl bestätigen" action="#{EntscheidenObFreierOderDelegierterTaskController.submit()}" />
+                <h:commandButton id="freiertask_button" value="Auswahl bestätigen" action="#{entscheidenObFreierOderDelegierterTaskController.submit()}" />
                 <br/>
             </h:form>
         </div>
