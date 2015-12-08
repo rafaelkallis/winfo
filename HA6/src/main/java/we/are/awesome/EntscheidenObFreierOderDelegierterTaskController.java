@@ -4,25 +4,20 @@ import java.io.IOException;
 
 public class EntscheidenObFreierOderDelegierterTaskController extends Controller{
 	
-	protected Boolean isFreierTask;
-	
 	/*
 	 * ("taskId","loggedUserId")
 	 */
-	public void call(Boolean isFreierTask) {
-		this.isFreierTask = isFreierTask;
-		Long taskId = super.businessProcess.getVariable("taskId");
-		TaskEntity taskEntity = super.getTaskEntity(taskId);
+	public void submit() {
+		Boolean isFreierTask 	= super.businessProcess.getVariable("isFreierTask");
+		Long taskId 			= super.businessProcess.getVariable("taskId");
+
+		TaskEntity taskEntity 	= super.getTaskEntity(taskId);
 		taskEntity.setIsFreierTask(isFreierTask);
 		
 		super.entityManager.merge(taskEntity);
 		super.entityManager.flush();
 		
-		try {
-			super.taskForm.completeProcessInstanceForm();
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		}
+		super.completeTask();
 	}
 	
 	public TaskDAO getTaskDAO(){
@@ -30,12 +25,7 @@ public class EntscheidenObFreierOderDelegierterTaskController extends Controller
 		return new TaskDAO(super.getTaskEntity(taskId));
 	}
 
-	public void setIsFreierterTask(Boolean isFreierTask) {
-		this.isFreierTask = isFreierTask;
+	public Boolean getIsFreierTask(Long taskId){
+		return super.getTaskEntity(taskId).getIsFreierTask();
 	}
-	
-	public Boolean getIsFreierTak(){
-		return this.isFreierTask;
-	}
-	
 }

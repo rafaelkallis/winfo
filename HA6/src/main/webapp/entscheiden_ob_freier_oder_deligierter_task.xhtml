@@ -5,39 +5,34 @@
   xmlns:f="http://java.sun.com/jsf/core">
 
 <f:view>
-  <f:metadata>
+    <f:metadata>
     <!-- Start a new process instance. The Process Definition Key is read internally from
          request parameters and cached in the CDI conversation scope.
     -->
-    <f:event type="preRenderView" listener="#{camundaTaskForm.startProcessInstanceByKeyForm()}" />
-  </f:metadata>
-  <h:head>
-  
-  </h:head>
-  <h:body>
-   
+        <f:event type="preRenderView" listener="#{camundaTaskForm.startTaskForm()}" />
+    </f:metadata>
+    <h:head>  
+    </h:head>
+    <h:body>
         <div  align="left" >
-    <h:form id="freeForm">
-
-
-  <label>Entscheiden ob freier oder delegierter Task</label>
-  <br>
-  <label>Titel</label>
-  <br>
-  <label title="#{EntscheidenObFreierOderDelegierterTaskController.getTaskDAO().title}"></label>
-    <br>
-  <label>Description</label>
-    <br>
-  <label title="#{EntscheidenObFreierOderDelegierterTaskController.getTaskDAO().description}"></label>
-  <br>
-  <br>
-<label>Ist der ausgewählte Task frei?</label> <h:selectBooleanCheckbox  value="#{EntscheidenObFreierOderDelegierterTaskController.isFreierTask}"/>
- <br>
-      <h:commandButton id="freiertask_button" value="Auswahl bestätigen" action="#{EntscheidenObFreierOderDelegierterTaskController.call(EntscheidenObFreierOderDelegierterTaskController.isFreierTask)}" />
-<br>
-
-    </h:form>
-    </div>
-  </h:body>
+            <h:form id="freeForm">
+                <label>Entscheiden ob freier oder delegierter Task</label>
+                <br/>
+                <label>Titel</label>
+                <br/>
+                <label title="#{EntscheidenObFreierOderDelegierterTaskController.getTaskDAO().title}"></label>
+                <br/>
+                <label>Description</label>
+                <br/>
+                <label title="#{EntscheidenObFreierOderDelegierterTaskController.getTaskDAO().description}"></label>
+                <br/>
+                <br/>
+                <label>Ist der ausgewählte Task frei?</label> <h:selectBooleanCheckbox  value="#{processVariable['isFreierTask']}"/>
+                <br/>
+                <h:commandButton id="freiertask_button" value="Auswahl bestätigen" action="#{EntscheidenObFreierOderDelegierterTaskController.submit()}" />
+                <br/>
+            </h:form>
+        </div>
+    </h:body>
 </f:view>
 </html>
