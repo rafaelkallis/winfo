@@ -13,74 +13,45 @@ public class MitarbeiterWorkspaceController extends Controller{
 	private Boolean newTask				= false;
 	private Boolean logout				= false;
 		
-	private Long 	selectedTaskId;
-	private String	title;
-	private String	description;
-		
 	/*
 	 * ("loddegUserId")
 	 * + "taskId"
 	 */
-	public void taskZurueckweisen(Long taskId){
+	public void taskZurueckweisen(){
 		this.taskZurueckweisen 	= true;
 		
-		super.businessProcess.setVariable("taskId", taskId);
-		
-		try {
-			super.taskForm.completeProcessInstanceForm();
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		}
+		super.completeProcessInstanceForm();
 	}
 	
 	/*
 	 * ("loggedUserId")
-	 * + "taskId
+	 * + "taskId"
 	 */
-	public void taskBearbeiten(Long taskId){
+	public void taskBearbeiten(){
 		this.taskBearbeiten 	= true;
 		
-		super.businessProcess.setVariable("taskId", taskId);
-		
-		try {
-			super.taskForm.completeProcessInstanceForm();
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		}
+		super.completeProcessInstanceForm();
 	}
 	
 	/*
 	 * ("loggedUserId")
-	 * + "taskId
+	 * + "taskId"
 	 */
-	public void taskVerschieben(Long taskId){
+	public void taskVerschieben(){
 		this.taskVerschieben 	= true;
 		
-		super.businessProcess.setVariable("taskId", taskId);
-		
-		try {
-			super.taskForm.completeProcessInstanceForm();
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		}
+		super.completeProcessInstanceForm();
 	}
 	
 	/*
 	 * ("loggedUserId")
-	 * + "taskTitle"
-	 * + "taskDescription"
+	 * + "title"
+	 * + "description"
 	 */
-	public void newTask(String title,String description){
+	public void newTask(){
 		this.newTask			= true;
 		
-		super.businessProcess.setVariable("taskTitle", title);
-		super.businessProcess.setVariable("taskDescription",description);
-		
-		try {
-			super.taskForm.completeProcessInstanceForm();
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		}
+		super.completeProcessInstanceForm();
 	}
 	
 	/*
@@ -89,11 +60,7 @@ public class MitarbeiterWorkspaceController extends Controller{
 	public void logout(){
 		this.logout = true;
 		
-		try {
-			super.taskForm.completeProcessInstanceForm();
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		}
+		super.completeProcessInstanceForm();
 	}
 	
 	protected List<TaskDAO> getUserTaskList(){
@@ -126,31 +93,4 @@ public class MitarbeiterWorkspaceController extends Controller{
 	public Boolean getLogout(){
 		return logout;
 	}
-
-	public Long getSelectedTaskId() {
-		return selectedTaskId;
-	}
-
-	public void setSelectedTaskId(Long selectedTaskId) {
-		this.selectedTaskId = selectedTaskId;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-	
-	
-	
 }

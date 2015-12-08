@@ -21,15 +21,15 @@
 
           <label>Task zum überprüfen auswählen</label>
           <br>
-          <h:selectOneMenu value="#{ProjektleiterWorkspaceController.selectedTaskId}" >
-              <f:selectItems value="#{ProjektleiterWorkspaceController.getUserTaskList()}" var="tasks" 
-              itemlabel="#{tasks.title}" itemValue="#{tasks.id}"/>
+          <h:selectOneMenu value="#{processVariables['selectedTaskId']}" >
+              <f:selectItems value="#{projektleiterWorkspaceController.getUserTaskList()}" var="task" 
+              itemLabel="#{task.title}" itemValue="#{task.id}"/>
           </h:selectOneMenu>
           
 	<br>
-      <h:commandButton id="ueberptuefen_button" value="Task überprüfen" action="#{ProjektleiterWorkspaceController.reviewTask(ProjektleiterWorkspaceController.selectedTaskId)}" />
+      <h:commandButton id="ueberptuefen_button" value="Task überprüfen" action="#{projektleiterWorkspaceController.reviewTask()}" />
       	<br>
-      <h:commandButton id="logout_button" value="Logout" action="#{ProjektleiterWorkspaceController.logout())}" />
+      <h:commandButton id="logout_button" value="Logout" action="#{projektleiterWorkspaceController.logout())}" />
 
     
     </h:form>
@@ -41,13 +41,13 @@
       
 <br>
  <label>Titel eingeben</label>
- <h:inputText binding="#{title}" required="true" />
+ <h:inputText value="#{processVariables['title']}" required="true" />
  <br>
   <label>Beschreibung eingeben</label>
- <h:inputText binding="#{description}" required="true" id="descriptionbox"/>
+ <h:inputText value="#{processVariables['description']}" required="true"/>
  <br>
 
-      <h:commandButton id="newtask_button" value="Neuer Task erstellen" action="#{ProjektleiterWorkspaceController.newTask(ProjektleiterWorkspaceController.title, description.value)}" />
+      <h:commandButton id="newtask_button" value="Neuer Task erstellen" action="#{projektleiterWorkspaceController.newTask()}" />
 <br>
   
     </h:form>

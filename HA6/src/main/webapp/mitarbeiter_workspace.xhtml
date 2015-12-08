@@ -21,19 +21,19 @@
 
           <label>Task auswählen</label>
           <br>
-          <h:selectOneMenu value="#{MitarbeiterWorkspaceController.selectedTaskId}" >
-              <f:selectItems value="#{MitarbeiterWorkspaceController.getUserTaskList()}" var="task" 
-              itemlabel="#{task.title}" itemValue="#{task.id}"/>
+          <h:selectOneMenu value="#{processVariable['selectedTaskId']}" >
+              <f:selectItems value="#{mitarbeiterWorkspaceController.getUserTaskList()}" var="task" 
+              itemLabel="#{task.title}" itemValue="#{task.id}"/>
           </h:selectOneMenu>
           
 	<br>
-      <h:commandButton id="zurueckweisen_button" value="Zurückweisen" action="#{MitarbeiterWorkspaceController.taskZurueckweisen(MitarbeiterWorkspaceController.selectedTaskId)}" />
+      <h:commandButton id="zurueckweisen_button" value="Zurückweisen" action="#{mitarbeiterWorkspaceController.taskZurueckweisen(mitarbeiterWorkspaceController.selectedTaskId)}" />
       	<br>
-      <h:commandButton id="bearbeiten_button" value="Bearbeiten" action="#{MitarbeiterWorkspaceController.taskBearbeiten(MitarbeiterWorkspaceController.selectedTaskId)}" />
+      <h:commandButton id="bearbeiten_button" value="Bearbeiten" action="#{mitarbeiterWorkspaceController.taskBearbeiten(mitarbeiterWorkspaceController.selectedTaskId)}" />
       	<br>
-      <h:commandButton id="verschieben_button" value="Verschieben" action="#{MitarbeiterWorkspaceController.taskVerschieben(MitarbeiterWorkspaceController.selectedTaskId)}" />
+      <h:commandButton id="verschieben_button" value="Verschieben" action="#{mitarbeiterWorkspaceController.taskVerschieben(mitarbeiterWorkspaceController.selectedTaskId)}" />
        	<br>
-      <h:commandButton id="logout_button" value="Logout" action="#{MitarbeiterWorkspaceController.logout()}" />
+      <h:commandButton id="logout_button" value="Logout" action="#{mitarbeiterWorkspaceController.logout()}" />
 
     
     </h:form>
@@ -45,13 +45,13 @@
       
 <br>
  <label>Titel eingeben</label>
- <h:inputText value="#{MitarbeiterWorkspaceController.title}" required="true" />
+ <h:inputText value="#{processVariable['title']}" required="true" />
  <br>
   <label>Beschreibung eingeben</label>
- <h:inputText value="#{MitarbeiterWorkspaceController.description}" required="true" />
+ <h:inputText value="#{processVariable['description']}" required="true" />
  <br>
 
-      <h:commandButton id="newtask_button" value="Neuer Task erstellen" action="#{MitarbeiterWorkspaceController.newTask(MitarbeiterWorkspaceController.title, MitarbeiterWorkspaceController.description)}" />
+      <h:commandButton id="newtask_button" value="Neuer Task erstellen" action="#{mitarbeiterWorkspaceController.newTask()}" />
 <br>
   
     </h:form>

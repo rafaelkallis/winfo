@@ -11,45 +11,26 @@ public class ProjektleiterWorkspaceController extends Controller {
 	private Boolean taskAufnehmen 		= false;
 	private Boolean taskUeberpruefen 	= false;
 	private Boolean logout				= false;
-	
-	private Long 	selectedTaskId;
-	private String	title;
-	private String	description;
-	
-	
-	
+
 	/*
 	 * ("loggedUserId")
-	 * + "taskTitle"
-	 * + "taskDescription"
+	 * + "title"
+	 * + "description"
 	 */
-	public void newTask(String title, String description){
+	public void newTask(){
 		this.taskAufnehmen = true;
 		
-		super.businessProcess.setVariable("taskTitle", title);
-		super.businessProcess.setVariable("taskDescription",description);
-		
-		try {
-			super.taskForm.completeProcessInstanceForm();
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		}
+		super.completeProcessInstanceForm();
 	}
 	
 	/*
 	 * ("loggedUserId")
-	 * + "taskId"
+	 * + "selectedTaskId"
 	 */
-	public void reviewTask(Long taskId){
+	public void reviewTask(){
 		this.taskUeberpruefen = true;
-		
-		super.businessProcess.setVariable("taskId", taskId);
-		
-		try {
-			super.taskForm.completeProcessInstanceForm();
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		}
+				
+		super.completeProcessInstanceForm();
 	}
 	
 	/*
@@ -58,11 +39,7 @@ public class ProjektleiterWorkspaceController extends Controller {
 	public void logout(){
 		this.logout = true;
 		
-		try {
-			super.taskForm.completeProcessInstanceForm();
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		}
+		super.completeProcessInstanceForm();
 	}
 	
 	public List<TaskDAO> getZurueckgewieseneTasks(){
@@ -86,29 +63,5 @@ public class ProjektleiterWorkspaceController extends Controller {
 	
 	public Boolean getLogout(){
 		return this.logout;
-	}
-	
-	public Long getSelectedTaskId() {
-		return selectedTaskId;
-	}
-
-	public void setSelectedTaskId(Long selectedTaskId) {
-		this.selectedTaskId = selectedTaskId;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
 	}
 }
