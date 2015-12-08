@@ -3,7 +3,6 @@ package we.are.awesome;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.persistence.Query;
 
 public class LoginController extends Controller { 
