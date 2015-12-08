@@ -15,7 +15,7 @@ public class LoginController extends Controller {
 	}
 	
 	public void register(){
-		String userName = super.businessProcess.getVariable("userName");
+		String userName 		= super.businessProcess.getVariable("userName");
 		Boolean isProjektleiter = super.businessProcess.getVariable("isProjektleiter");
 		
 		Grouppe userGrouppe 	= isProjektleiter? Grouppe.Projektleiter : Grouppe.Mitarbeiter;

@@ -10,9 +10,9 @@ import javax.persistence.Query;
 @Stateless
 public class ProjektleiterWorkspaceController extends Controller {
 	
-	private Boolean taskAufnehmen 		= false;
-	private Boolean taskUeberpruefen 	= false;
-	private Boolean logout				= false;
+	//private Boolean taskAufnehmen 		= false;
+	// private Boolean taskUeberpruefen 	= false;
+	// private Boolean logout				= false;
 
 	/*
 	 * ("loggedUserId")
@@ -20,8 +20,8 @@ public class ProjektleiterWorkspaceController extends Controller {
 	 * + "description"
 	 */
 	public void newTask(){
-		this.taskAufnehmen = true;
-		
+		//this.taskAufnehmen = true;
+		super.businessProcess.setVariable("action","newTask");
 		super.completeTask();
 	}
 	
@@ -30,8 +30,8 @@ public class ProjektleiterWorkspaceController extends Controller {
 	 * + "selectedTaskId"
 	 */
 	public void reviewTask(){
-		this.taskUeberpruefen = true;
-				
+		// this.taskUeberpruefen = true;
+		super.businessProcess.setVariable("action","reviewTask");	
 		super.completeTask();
 	}
 	
@@ -39,8 +39,8 @@ public class ProjektleiterWorkspaceController extends Controller {
 	 * ("loggedUserId")
 	 */
 	public void logout(){
-		this.logout = true;
-		
+		// this.logout = true;
+		super.businessProcess.setVariable("action","logout");
 		super.completeTask();
 	}
 	
@@ -55,15 +55,15 @@ public class ProjektleiterWorkspaceController extends Controller {
 		return taskList;
 	}
 
-	public Boolean getTaskAufnehmen() {
-		return taskAufnehmen;
-	}
+	// public Boolean getTaskAufnehmen() {
+	// 	return taskAufnehmen;
+	// }
 
-	public Boolean getTaskUeberpruefen() {
-		return taskUeberpruefen;
-	}
+	// public Boolean getTaskUeberpruefen() {
+	// 	return taskUeberpruefen;
+	// }
 	
-	public Boolean getLogout(){
-		return this.logout;
-	}
+	// public Boolean getLogout(){
+	// 	return this.logout;
+	// }
 }
