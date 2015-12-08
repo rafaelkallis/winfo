@@ -7,29 +7,11 @@ import javax.persistence.Query;
 
 public class LoginController extends Controller { 
 	
-	/*
-	 * Used on both login & registration
-	 */
 	private Boolean isProjektleiter;
-	
-	/*
-	 * Used on login
-	 */
-	private Long selectedUserId;
-	
-	/*
-	 * Used on registration
-	 */
-	private String userName;
-	
-	
-	/*
-	 * + "loggedUserId"
-	 */
-	public void login(Long userId){
-		super.businessProcess.setVariable("loggedUserId", userId);
-		
-		this.isProjektleiter = super.getUserEntity(userId).getGrouppe() == Grouppe.Projektleiter;
+
+	public void login(){
+		Long loggedUserId = super.businessProcess.getVariable("loggedUserId");
+		this.isProjektleiter = super.getUserEntity(loggedUserId).getGrouppe() == Grouppe.Projektleiter;
 		
 		try {
 			super.taskForm.completeProcessInstanceForm();
@@ -38,12 +20,11 @@ public class LoginController extends Controller {
 		}
 	}
 	
-	/*
-	 * + "loggedUserId"
-	 */
-	public void register(String userName, Boolean isProjektleiter){
-		Grouppe userGrouppe = isProjektleiter? Grouppe.Projektleiter : Grouppe.Mitarbeiter;
-		UserEntity newUser = new UserEntity(userName,userGrouppe);
+	public void register(){
+		String userName 		= super.businessProcess.getVariable("registerUserName");
+		Boolean isProjektleiter = super.businessProcess.getVariable("registerIsProjektleiter");
+		Grouppe userGrouppe 	= isProjektleiter? Grouppe.Projektleiter : Grouppe.Mitarbeiter;
+		UserEntity newUser 		= new UserEntity(userName,userGrouppe);
 		
 		entityManager.persist(newUser);
 		entityManager.flush();
@@ -57,22 +38,6 @@ public class LoginController extends Controller {
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
-	}
-	
-	public void setSelectedUserId(Long selectedUserId){
-		this.selectedUserId = selectedUserId;
-	}
-	
-	public Long getSelectedUserId(){
-		return this.selectedUserId;
-	}
-	
-	public void setUserName(String userName){
-		this.userName = userName;
-	}
-	
-	public String getUserName(){
-		return this.userName;
 	}
 	
 	public Boolean getIsProjektleiter(){
