@@ -1,11 +1,13 @@
 package we.are.awesome;
 
-import java.io.IOException;
+import javax.ejb.Stateless;
+import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.persistence.Query;
 
+@Named
+@Stateless
 public class ProjektleiterWorkspaceController extends Controller {
 	
 	private Boolean taskAufnehmen 		= false;
@@ -20,7 +22,7 @@ public class ProjektleiterWorkspaceController extends Controller {
 	public void newTask(){
 		this.taskAufnehmen = true;
 		
-		super.completeProcessInstanceForm();
+		super.completeTask();
 	}
 	
 	/*
@@ -30,7 +32,7 @@ public class ProjektleiterWorkspaceController extends Controller {
 	public void reviewTask(){
 		this.taskUeberpruefen = true;
 				
-		super.completeProcessInstanceForm();
+		super.completeTask();
 	}
 	
 	/*
@@ -39,10 +41,10 @@ public class ProjektleiterWorkspaceController extends Controller {
 	public void logout(){
 		this.logout = true;
 		
-		super.completeProcessInstanceForm();
+		super.completeTask();
 	}
 	
-	public List<TaskDAO> getZurueckgewieseneTasks(){
+	public List<TaskDAO> getNotReviewedTasks(){
 		List<TaskDAO> taskList = new ArrayList<TaskDAO>();
 		
 		Query query = entityManager.createQuery("SELECT t FROM TaskEntity t WHERE t.needsReview=TRUE");

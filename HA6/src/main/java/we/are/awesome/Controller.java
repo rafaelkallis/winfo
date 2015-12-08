@@ -36,6 +36,14 @@ public abstract class Controller {
 		}
 	}
 	
+	protected void completeTask(){
+		try {
+			this.taskForm.completeTask();
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
 //	public void assertCurrentTaskId(DelegateExecution execution){
 //		assert(this.businessProcess.getVariable("taskId") == execution.getVariable("taskId"));
 //	}

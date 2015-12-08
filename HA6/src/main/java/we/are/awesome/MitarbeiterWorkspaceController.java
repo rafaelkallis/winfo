@@ -1,11 +1,14 @@
 package we.are.awesome;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.ejb.Stateless;
+import javax.inject.Named;
 import javax.persistence.Query;
 
+@Named
+@Stateless
 public class MitarbeiterWorkspaceController extends Controller{
 	private Boolean taskZurueckweisen 	= false;
 	private Boolean	taskBearbeiten		= false;
