@@ -15,7 +15,7 @@ public class UserEntity {
 	protected String name;
 	
 	public UserEntity(){
-		id = null;
+		
 	}
 	
 	public UserEntity(String name,Grouppe grouppe){
@@ -29,6 +29,10 @@ public class UserEntity {
 
 	public String getName(){
 		return this.name;
+	}
+	
+	public void setName(String name){
+		this.name = name;
 	}
 
 	public Grouppe getGrouppe() {
