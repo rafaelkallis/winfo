@@ -55,6 +55,10 @@ public class ProjektleiterWorkspaceController extends Controller {
 		return taskList;
 	}
 
+	public String getAction(){
+		return super.businessProcess.getVariable("action");
+	}
+	
 	// public Boolean getTaskAufnehmen() {
 	// 	return taskAufnehmen;
 	// }
