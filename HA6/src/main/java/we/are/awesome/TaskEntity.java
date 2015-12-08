@@ -1,13 +1,11 @@
 package we.are.awesome;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
-import java.io.Serializable;
 
 @Entity
-public class TaskEntity implements Serializable {
-
-  private static  final long serialVersionUID = 1L;
+public class TaskEntity{
 
 	@Id
 	@GeneratedValue
@@ -24,7 +22,11 @@ public class TaskEntity implements Serializable {
 	protected Boolean		isFreierTask;
 	
 	protected Long			assignedUserId;
+	  
+	public TaskEntity(){
 		  
+	}
+	
 	public TaskEntity(String title, String description){
 		this.title 				= title;
 		this.description 		= description;
@@ -32,10 +34,6 @@ public class TaskEntity implements Serializable {
 		this.needsReview		= true;
 		this.isFreierTask		= null;
 		this.assignedUserId		= null;
-	}
-	  
-	public TaskEntity(){
-		  
 	}
 
 	public Long getId() {

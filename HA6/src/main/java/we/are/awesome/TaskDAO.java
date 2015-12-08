@@ -1,10 +1,6 @@
 package we.are.awesome;
 
-import java.io.Serializable;
-
-public class TaskDAO implements Serializable{
-
-	private static final long serialVersionUID = 1L;
+public class TaskDAO{
 	
 	private final Long	 id;
 	private final String title;
