@@ -24,11 +24,11 @@
                     itemLabel="#{task.title}" itemValue="#{task.id}"/>
                 </h:selectOneMenu>
     	        <br/>
-                <h:commandButton id="zurueckweisen_button" value="Zurückweisen" action="#{mitarbeiterWorkspaceController.taskZurueckweisen(mitarbeiterWorkspaceController.selectedTaskId)}" />
+                <h:commandButton id="zurueckweisen_button" value="Zurückweisen" action="#{mitarbeiterWorkspaceController.taskZurueckweisen()}" />
           	    <br/>
-                <h:commandButton id="bearbeiten_button" value="Bearbeiten" action="#{mitarbeiterWorkspaceController.taskBearbeiten(mitarbeiterWorkspaceController.selectedTaskId)}" />
+                <h:commandButton id="bearbeiten_button" value="Bearbeiten" action="#{mitarbeiterWorkspaceController.taskBearbeiten()}" />
           	    <br/>
-                <h:commandButton id="verschieben_button" value="Verschieben" action="#{mitarbeiterWorkspaceController.taskVerschieben(mitarbeiterWorkspaceController.selectedTaskId)}" />
+                <h:commandButton id="verschieben_button" value="Verschieben" action="#{mitarbeiterWorkspaceController.taskVerschieben()}" />
            	    <br/>
                 <h:commandButton id="logout_button" value="Logout" action="#{mitarbeiterWorkspaceController.logout()}" />
             </h:form>
