@@ -6,9 +6,6 @@
 
 <f:view>
     <f:metadata>
-        <!-- Start a new process instance. The Process Definition Key is read internally from
-             request parameters and cached in the CDI conversation scope.
-        -->
         <f:event type="preRenderView" listener="#{camundaTaskForm.startTaskForm()}" />
     </f:metadata>
     <h:head>
