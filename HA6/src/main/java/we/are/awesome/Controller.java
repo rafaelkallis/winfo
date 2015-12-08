@@ -1,16 +1,11 @@
 package we.are.awesome;
 
-import javax.ejb.Stateless;
 import javax.inject.Inject;
-import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import org.camunda.bpm.engine.cdi.BusinessProcess;
 import org.camunda.bpm.engine.cdi.jsf.TaskForm;
-import org.camunda.bpm.engine.delegate.DelegateExecution;
 
-@Stateless
-@Named
 public abstract class Controller {
 	
 	@Inject
