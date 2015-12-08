@@ -130,7 +130,7 @@
       <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression">${projektleiterWorkspaceController.taskAufnehmen}</bpmn2:conditionExpression>
     </bpmn2:sequenceFlow>
     <bpmn2:sequenceFlow id="SequenceFlow_46" name="Task ueberpruefen" sourceRef="ExclusiveGateway_7" targetRef="UserTask_13">
-      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression">${projektleiterWorkspaceController.taskUeberpruefen}</bpmn2:conditionExpression>
+      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression">${projektleiterWorkspaceController.getTaskUeberpruefen()}</bpmn2:conditionExpression>
     </bpmn2:sequenceFlow>
     <bpmn2:exclusiveGateway id="ExclusiveGateway_11">
       <bpmn2:incoming>SequenceFlow_21</bpmn2:incoming>
@@ -145,7 +145,7 @@
     </bpmn2:serviceTask>
     <bpmn2:sequenceFlow id="SequenceFlow_64" name="" sourceRef="ServiceTask_2" targetRef="ExclusiveGateway_13"/>
     <bpmn2:sequenceFlow id="SequenceFlow_68" name="Ausloggen" sourceRef="ExclusiveGateway_7" targetRef="ExclusiveGateway_14">
-      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression">${projektleiterWorkspaceController.logout}</bpmn2:conditionExpression>
+      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression">${projektleiterWorkspaceController.getLogout()}</bpmn2:conditionExpression>
     </bpmn2:sequenceFlow>
     <bpmn2:exclusiveGateway id="ExclusiveGateway_14">
       <bpmn2:incoming>SequenceFlow_60</bpmn2:incoming>
