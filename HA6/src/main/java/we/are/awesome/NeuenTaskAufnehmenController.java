@@ -8,15 +8,12 @@ public class NeuenTaskAufnehmenController extends ServiceTaskController{
 	 * (non-Javadoc)
 	 * @see we.are.awesome.ServiceTaskController#call(org.camunda.bpm.engine.delegate.DelegateExecution)
 	 * ("taskTitle","taskDescription","loggedUserId")
-	 * - "taskTitle"
-	 * - "taskDescription"
+	 * - "title"
+	 * - "description"
 	 * + "taskId"
 	 */
 	@Override
-	public void call(DelegateExecution delegateExecution) {
-		String title = (String) delegateExecution.getVariable("taskTitle");
-		String description = (String) delegateExecution.getVariable("taskDescription");
-		
+	public void call(String title, String description) {
 		TaskEntity taskEntity = new TaskEntity(title,description);
 		
 		taskEntity.setNeedsReview(false);
@@ -24,8 +21,6 @@ public class NeuenTaskAufnehmenController extends ServiceTaskController{
 		entityManager.persist(taskEntity);
 		
 		delegateExecution.setVariable("taskId", taskEntity.id);
-		delegateExecution.removeVariable("taskTitle");
-		delegateExecution.removeVariable("taskDescription");
 		
 		entityManager.flush();
 	}
