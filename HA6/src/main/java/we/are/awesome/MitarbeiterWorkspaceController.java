@@ -9,64 +9,34 @@ import javax.persistence.Query;
 
 @Named
 @Stateless
-public class MitarbeiterWorkspaceController extends Controller{
-	private Boolean taskZurueckweisen 	= false;
-	private Boolean	taskBearbeiten		= false;
-	private Boolean	taskVerschieben		= false;
-	private Boolean newTask				= false;
-	private Boolean logout				= false;
-		
-	/*
-	 * ("loddegUserId")
-	 * + "taskId"
-	 */
+public class MitarbeiterWorkspaceController extends WorkspaceController{
+
 	public void taskZurueckweisen(){
-		this.taskZurueckweisen 	= true;
-		
-		super.completeProcessInstanceForm();
+		super.businessProcess.setVariable("action", "zurueckweisen");
+		super.completeTask();
 	}
-	
-	/*
-	 * ("loggedUserId")
-	 * + "taskId"
-	 */
+
 	public void taskBearbeiten(){
-		this.taskBearbeiten 	= true;
-		
-		super.completeProcessInstanceForm();
+		super.businessProcess.setVariable("action", "bearbeiten");
+		super.completeTask();
 	}
-	
-	/*
-	 * ("loggedUserId")
-	 * + "taskId"
-	 */
+
 	public void taskVerschieben(){
-		this.taskVerschieben 	= true;
-		
-		super.completeProcessInstanceForm();
+		super.businessProcess.setVariable("action", "verschieben");
+		super.completeTask();
 	}
-	
-	/*
-	 * ("loggedUserId")
-	 * + "title"
-	 * + "description"
-	 */
+
 	public void newTask(){
-		this.newTask			= true;
-		
-		super.completeProcessInstanceForm();
+		super.businessProcess.setVariable("action", "aufnehmen");
+		super.completeTask();
 	}
-	
-	/*
-	 * ("loggedUserId")
-	 */
+
 	public void logout(){
-		this.logout = true;
-		
-		super.completeProcessInstanceForm();
+		super.businessProcess.setVariable("action","logout");
+		super.completeTask();
 	}
 	
-	protected List<TaskDAO> getUserTaskList(){
+	public List<TaskDAO> getUserTaskList(){
 		List<TaskDAO> taskList = new ArrayList<TaskDAO>();
 		Long userId = (Long)super.businessProcess.getVariable("loggedUserId");
 		Query query = entityManager.createQuery("SELECT t FROM TaskEntity t WHERE (t.assignedUserId='"+userId+"' OR t.isFreierTask=TRUE) AND t.isDone=FALSE");
@@ -75,25 +45,5 @@ public class MitarbeiterWorkspaceController extends Controller{
 			taskList.add(new TaskDAO(taskEntity));
 		}
 		return taskList;	
-	}
-
-	public Boolean getTaskZurueckweisen() {
-		return taskZurueckweisen;
-	}
-
-	public Boolean getTaskBearbeiten() {
-		return taskBearbeiten;
-	}
-
-	public Boolean getTaskVerschieben() {
-		return taskVerschieben;
-	}
-	
-	public Boolean getNewTask() {
-		return newTask;
-	}
-	
-	public Boolean getLogout(){
-		return logout;
 	}
 }

@@ -8,38 +8,19 @@ import javax.persistence.Query;
 
 @Named
 @Stateless
-public class ProjektleiterWorkspaceController extends Controller {
-	
-	//private Boolean taskAufnehmen 		= false;
-	// private Boolean taskUeberpruefen 	= false;
-	// private Boolean logout				= false;
+public class ProjektleiterWorkspaceController extends WorkspaceController {
 
-	/*
-	 * ("loggedUserId")
-	 * + "title"
-	 * + "description"
-	 */
 	public void newTask(){
-		//this.taskAufnehmen = true;
 		super.businessProcess.setVariable("action","newTask");
 		super.completeTask();
 	}
-	
-	/*
-	 * ("loggedUserId")
-	 * + "selectedTaskId"
-	 */
+
 	public void reviewTask(){
-		// this.taskUeberpruefen = true;
 		super.businessProcess.setVariable("action","reviewTask");	
 		super.completeTask();
 	}
-	
-	/*
-	 * ("loggedUserId")
-	 */
+
 	public void logout(){
-		// this.logout = true;
 		super.businessProcess.setVariable("action","logout");
 		super.completeTask();
 	}
@@ -47,27 +28,11 @@ public class ProjektleiterWorkspaceController extends Controller {
 	public List<TaskDAO> getNotReviewedTasks(){
 		List<TaskDAO> taskList = new ArrayList<TaskDAO>();
 		
-		Query query = entityManager.createQuery("SELECT t FROM TaskEntity t WHERE t.needsReview=TRUE");
+		Query query = super.entityManager.createQuery("SELECT t FROM TaskEntity t WHERE t.needsReview=TRUE");
 		List<TaskEntity> rs = query.getResultList();
 		for(TaskEntity taskEntity : rs){
 			taskList.add(new TaskDAO(taskEntity));
 		}
 		return taskList;
 	}
-
-	public String getAction(){
-		return super.businessProcess.getVariable("action");
-	}
-	
-	// public Boolean getTaskAufnehmen() {
-	// 	return taskAufnehmen;
-	// }
-
-	// public Boolean getTaskUeberpruefen() {
-	// 	return taskUeberpruefen;
-	// }
-	
-	// public Boolean getLogout(){
-	// 	return this.logout;
-	// }
 }
