@@ -1,6 +1,5 @@
 package we.are.awesome;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,23 +10,15 @@ import javax.persistence.Query;
 @Stateless
 @Named
 public class LoginController extends Controller { 
-	
-	private Boolean isProjektleiter;
-
-	public void login(){
-		Long loggedUserId = super.businessProcess.getVariable("loggedUserId");
-		this.isProjektleiter = super.getUserEntity(loggedUserId).getGrouppe() == Grouppe.Projektleiter;
 		
-		try {
-			super.taskForm.completeProcessInstanceForm();
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		}
+	public void login(){
+		super.completeProcessInstanceForm();
 	}
 	
 	public void register(){
-		String userName 		= super.businessProcess.getVariable("registerUserName");
-		Boolean isProjektleiter = super.businessProcess.getVariable("registerIsProjektleiter");
+		String userName = super.businessProcess.getVariable("userName");
+		Boolean isProjektleiter = super.businessProcess.getVariable("isProjektleiter");
+		
 		Grouppe userGrouppe 	= isProjektleiter? Grouppe.Projektleiter : Grouppe.Mitarbeiter;
 		UserEntity newUser 		= new UserEntity(userName,userGrouppe);
 		
@@ -35,18 +26,8 @@ public class LoginController extends Controller {
 		entityManager.flush();
 		
 		super.businessProcess.setVariable("loggedUserId", newUser.getId());
-		
-		this.isProjektleiter = isProjektleiter;
-		
-		try {
-			super.taskForm.completeProcessInstanceForm();
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		}
-	}
-	
-	public Boolean getIsProjektleiter(){
-		return this.isProjektleiter;
+				
+		super.completeProcessInstanceForm();
 	}
 	
 	public List<UserDAO> getUsers(){
@@ -58,5 +39,9 @@ public class LoginController extends Controller {
 			userList.add(new UserDAO(userEntity));		
 		}
 		return userList;
+	}
+	
+	public Boolean getIsProjektleiter(Long loggedUserId){
+		return super.getUserEntity(loggedUserId).getGrouppe() == Grouppe.Projektleiter;
 	}
 }

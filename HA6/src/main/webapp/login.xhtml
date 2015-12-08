@@ -18,7 +18,7 @@
 				<label >Login</label>
 				<br/>
 				<h:selectOneMenu value="#{processVariables['loggedUserId']}" >
-					<f:selectItems value="#{LoginController.getUsers()}" var="user" itemlabel="#{user.firstName}" itemValue="#{user.id}"/>
+					<f:selectItems value="#{loginController.getUsers()}" var="user" itemLabel="#{user.firstName}" itemValue="#{user.id}"/>
 				</h:selectOneMenu>
 				<br/>
 				<h:commandButton id="login_button" value="Login" action="#{loginController.login()}" />
@@ -29,11 +29,11 @@
 				<label>Registrieren</label>
 				<br/>
 				<label>Name eingeben</label>
-				<h:inputText value="#{processVariables['registerUserName']}" required="true" />
+				<h:inputText value="#{processVariables['userName']}" required="true" />
 				<br/>
 				<br/>
 				<label>Projektleiter</label>
-				<h:selectBooleanCheckbox value="#{processVariables['registerIsProjektleiter']}" />
+				<h:selectBooleanCheckbox value="#{processVariables['isProjektleiter']}" />
 				<br/>
 				<h:commandButton id="register_button" value="Registrieren" action="#{loginController.register()}" />
 				<br/>
