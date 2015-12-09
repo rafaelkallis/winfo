@@ -18,7 +18,7 @@
 				<label >Login</label>
 				<br/>
 				<h:selectOneMenu value="#{processVariables['loggedUserId']}" >
-					<f:selectItems value="#{loginController.getUsers()}" var="user" itemLabel="#{user.name}" itemValue="#{user.id}"/>
+					<f:selectItems value="#{loginController.getUsers()}" var="_user" itemLabel="#{_user.name}" itemValue="#{_user.id}"/>
 				</h:selectOneMenu>
 				<br/>
 				<h:commandButton id="login_button" value="Login" action="#{loginController.login()}" />

@@ -17,18 +17,18 @@
 
                 <label>Task zum überprüfen auswählen</label>
                 <br/>
-                <h:selectOneMenu value="#{processVariables['selectedTaskId']}" >
-                    <f:selectItems value="#{projektleiterWorkspaceController.getNotReviewedTasks()}" var="task" 
-                    itemLabel="#{task.title}" itemValue="#{task.id}"/>
+                <h:selectOneMenu value="#{processVariables['taskId']}" >
+                    <f:selectItems value="#{projektleiterWorkspaceController.getNotReviewedTasks()}" var="_task" 
+                    itemLabel="#{_task.title}" itemValue="#{_task.id}"/>
                 </h:selectOneMenu>
     	        <br/>
-                <h:commandButton id="ueberptuefen_button" value="Task überprüfen" action="#{projektleiterWorkspaceController.reviewTask()}" />
+                <h:commandButton value="Task überprüfen" action="#{projektleiterWorkspaceController.reviewTask()}" />
           	    <br/>
-                <h:commandButton id="logout_button" value="Logout" action="#{projektleiterWorkspaceController.logout()}" />
+                <h:commandButton value="Logout" action="#{projektleiterWorkspaceController.logout()}" />
             </h:form>
         </div>
         <div id="rightdock" align="right" >
-            <h:form id="newtaskForm">
+            <h:form >
                 <label>Neuer Task anlegen</label>
                 <br/>
                 <label>Titel eingeben</label>

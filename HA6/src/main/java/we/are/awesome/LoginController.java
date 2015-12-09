@@ -2,9 +2,10 @@ package we.are.awesome;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.inject.Named;
-import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 @Named
 @Stateless
@@ -18,21 +19,21 @@ public class LoginController extends Controller {
 		String userName 		= super.businessProcess.getVariable("userName");
 		Boolean isProjektleiter = super.businessProcess.getVariable("isProjektleiter");
 		
-		Grouppe userGrouppe 	= isProjektleiter? Grouppe.Projektleiter : Grouppe.Mitarbeiter;
-		UserEntity newUser 		= new UserEntity(userName,userGrouppe);
+		UserEntity newUser 		= new UserEntity(userName,isProjektleiter);
 		
-		entityManager.persist(newUser);
-		entityManager.flush();
+		super.entityManager.persist(newUser);
 		
 		super.businessProcess.setVariable("loggedUserId", newUser.getId());
+		
+		super.entityManager.flush();
 				
-		super.completeProcessInstanceForm();
+		this.login();
 	}
 	
 	public List<UserDAO> getUsers(){
 		List<UserDAO> userList = new ArrayList<UserDAO>();	
 
-		Query query = entityManager.createQuery("SELECT u FROM UserEntity u");
+		TypedQuery<UserEntity> query = super.entityManager.createQuery("SELECT u FROM UserEntity u",UserEntity.class);
 		List<UserEntity> rs = query.getResultList();
 		for(UserEntity userEntity : rs){
 			userList.add(new UserDAO(userEntity));		
@@ -41,6 +42,6 @@ public class LoginController extends Controller {
 	}
 	
 	public Boolean getIsProjektleiter(Long loggedUserId){
-		return super.getUserEntity(loggedUserId).getGrouppe() == Grouppe.Projektleiter;
+		return super.getUserEntity(loggedUserId).getIsProjektleiter();
 	}
 }

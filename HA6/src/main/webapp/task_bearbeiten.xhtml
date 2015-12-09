@@ -23,7 +23,7 @@
           <br/>
         <label>Titel: </label>
          <h:outputLabel value="#{taskBearbeitenController.getTaskDAO().title}"/>
-
+	</h:form>
  <br/>
   <label >Beschreibung: </label>
   <h:outputLabel value="#{taskBearbeitenController.getTaskDAO().description}"/>
@@ -31,7 +31,7 @@
  <br/>
           
 	<br/>
-      <h:commandButton id="bearbeiten_button" value="Bearbeiten" action="#{taskBearbeitenController.completeTask()}" />
+      <h:commandButton id="bearbeiten_button" value="Bearbeiten" action="#{taskBearbeitenController.submit()}" />
       	<br/>
  </div>
    

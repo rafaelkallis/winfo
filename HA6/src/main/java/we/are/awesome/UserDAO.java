@@ -1,23 +1,26 @@
 package we.are.awesome;
 
 public class UserDAO {
-	private final String name;
+	
 	private final Long id;
-	private final Grouppe grouppe;
+	private final String name;
+	private final Boolean isProjektleiter;
 	
 	public UserDAO(UserEntity entity){
-		this.id 		= entity.getId();
-		this.name 		= entity.getName();
-		this.grouppe	= entity.getGrouppe();
+		this.id 				= entity.getId();
+		this.name 				= entity.getName();
+		this.isProjektleiter	= entity.getIsProjektleiter();
+	}
+	
+	public Long getId() {
+		return id;
 	}
 	
 	public String getName() {
 		return name;
 	}
-	public Long getId() {
-		return id;
-	}
-	public Grouppe getGrouppe(){
-		return this.grouppe;
+
+	public Boolean getIsProjektleiter(){
+		return this.isProjektleiter;
 	}
 }

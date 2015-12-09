@@ -7,11 +7,6 @@ import javax.inject.Named;
 @Stateless
 public class TaskUeberpruefenController extends Controller {
 
-	/*
-	 * (non-Javadoc)
-	 * @see we.are.awesome.ServiceTaskController#call(org.camunda.bpm.engine.delegate.DelegateExecution)
-	 * ("taskId","loggedUserId")
-	 */
 	public void call(Long taskId) {
 		TaskEntity taskEntity = super.getTaskEntity(taskId);
 		
