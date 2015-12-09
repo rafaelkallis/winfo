@@ -11,16 +11,17 @@ public class UserEntity {
 	@GeneratedValue
 	protected Long id;
 
-	protected Grouppe grouppe;	
+	protected Boolean isProjektleiter;	
 	protected String name;
+	//protected Boolean isSignedIn; TODO
 	
-	public UserEntity(){
+	protected UserEntity(){
 		
 	}
 	
-	public UserEntity(String name,Grouppe grouppe){
+	public UserEntity(String name,Boolean isProjektleiter){
 		this.name = name;
-		this.grouppe = grouppe;
+		this.isProjektleiter = isProjektleiter;
 	}
 
 	public Long getId() {
@@ -35,11 +36,11 @@ public class UserEntity {
 		this.name = name;
 	}
 
-	public Grouppe getGrouppe() {
-		return grouppe;
+	public Boolean getIsProjektleiter() {
+		return this.isProjektleiter;
 	}
 
-	public void setGrouppe(Grouppe grouppe) {
-		this.grouppe = grouppe;
+	public void setIsProjektleiter(Boolean isProjektleiter) {
+		this.isProjektleiter = isProjektleiter;
 	}
 }
