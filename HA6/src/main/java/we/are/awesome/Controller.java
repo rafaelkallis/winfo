@@ -44,26 +44,19 @@ public abstract class Controller {
 		}
 	}
 	
-//	public void assertCurrentTaskId(DelegateExecution execution){
-//		assert(this.businessProcess.getVariable("taskId") == execution.getVariable("taskId"));
-//	}
-//	
-//	public void assertCurrentLoggedUserId(DelegateExecution execution){
-//		assert(this.businessProcess.getVariable("loggedUserId") == execution.getVariable("loggedUserId"));
-//	}
-//	
-//	public void assertTaskTitle(DelegateExecution execution){
-//		assert(this.businessProcess.getVariable("taskTitle") == execution.getVariable("taskTitle"));
-//	}
+	protected Long debugLoggedUserId(){
+		return this.businessProcess.getVariable("loggedUserId");
+	}
 	
-//	public void assertTaskDescription(DelegateExecution execution){
-//		assert(this.businessProcess.getVariable("taskDescription") == execution.getVariable("taskDescription"));
-//	}
-//	
-//	public void assertAll(DelegateExecution execution){
-//		this.assertCurrentLoggedUserId(execution);
-//		this.assertCurrentTaskId(execution);
-//		this.assertTaskDescription(execution);
-//		this.assertTaskTitle(execution);
-//	}
+	protected String debugLoggedUserName(){
+		return this.getUserEntity((Long)this.businessProcess.getVariable("loggedUserId")).getName();
+	}
+	
+	protected Long debugTaskId(){
+		return this.businessProcess.getVariable("taskId");
+	}
+	
+	protected String debugTaskTitle(){
+		return this.getTaskEntity((Long)this.businessProcess.getVariable("taskId")).getTitle();
+	}
 }
