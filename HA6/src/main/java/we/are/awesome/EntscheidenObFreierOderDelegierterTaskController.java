@@ -9,7 +9,7 @@ public class EntscheidenObFreierOderDelegierterTaskController extends Controller
 	
 	public void submit() {
 		Boolean isFreierTask 	= super.businessProcess.getVariable("isFreierTask");
-		Long taskId 			= super.businessProcess.getVariable("taskId");
+		Long taskId 			= Long.parseLong(super.businessProcess.getVariable("taskId").toString()); //FIXME: getVariable() returns String instead of Long when Task was made by Mitarbeiter
 
 		TaskEntity taskEntity 	= super.getTaskEntity(taskId);
 		taskEntity.setIsFreierTask(isFreierTask);
@@ -21,7 +21,7 @@ public class EntscheidenObFreierOderDelegierterTaskController extends Controller
 	}
 	
 	public TaskDAO getTaskDAO(){
-		Long taskId = super.businessProcess.getVariable("taskId");
+		Long taskId = Long.parseLong(super.businessProcess.getVariable("taskId").toString()); //FIXME: getVariable() returns String instead of Long when Task was made by Mitarbeiter
 		return new TaskDAO(super.getTaskEntity(taskId));
 	}
 
