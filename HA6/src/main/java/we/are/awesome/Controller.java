@@ -43,20 +43,4 @@ public abstract class Controller {
 			throw new RuntimeException(e);
 		}
 	}
-	
-	protected Long debugLoggedUserId(){
-		return this.businessProcess.getVariable("loggedUserId");
-	}
-	
-	protected String debugLoggedUserName(){
-		return this.getUserEntity((Long)this.businessProcess.getVariable("loggedUserId")).getName();
-	}
-	
-	protected Long debugTaskId(){
-		return this.businessProcess.getVariable("taskId");
-	}
-	
-	protected String debugTaskTitle(){
-		return this.getTaskEntity((Long)this.businessProcess.getVariable("taskId")).getTitle();
-	}
 }
