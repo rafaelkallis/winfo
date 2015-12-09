@@ -33,12 +33,11 @@ public class PersonAuswaehlenController extends Controller{
 	}
 	
 	public Long getNAssignedTasks(){		
-		Long userId = null;
-		Long NTasks = 0L;
-		if((userId = super.businessProcess.getVariable("selectedUserId")) != null){
-			Query query = super.entityManager.createQuery("SELECT COUNT(*) FROM TaskEntity t WHERE t.assignedUserId = :userId").setParameter("userId", userId);
-			NTasks = (Long) query.getSingleResult();
-		}
+		Long userId = Long.parseLong(super.businessProcess.getVariable("assignedUserId").toString());
+		System.out.println("UserId = "+userId);
+		// FIXME: JPQL Count sucks
+		TypedQuery<TaskEntity> query = super.entityManager.createQuery("SELECT t FROM TaskEntity t WHERE t.assignedUserId = :userId AND t.isDone = FALSE",TaskEntity.class).setParameter("userId", userId);
+		Long NTasks = (long) query.getResultList().size();
 		System.out.println("Size of NAssignedTasks = "+NTasks);
 		return NTasks;
 	}
