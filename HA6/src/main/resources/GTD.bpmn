@@ -12,7 +12,7 @@
     <bpmn2:sequenceFlow id="SequenceFlow_24" name="Nein" sourceRef="ExclusiveGateway_4" targetRef="ExclusiveGateway_10">
       <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression">${not loginController.getIsProjektleiter(loggedUserId)}</bpmn2:conditionExpression>
     </bpmn2:sequenceFlow>
-    <bpmn2:userTask id="UserTask_2" camunda:formKey="app:mitarbeiter_workspace.jsf" camunda:assignee="demo" name="Aktivitaet Waehlen">
+    <bpmn2:userTask id="UserTask_2" camunda:formKey="app:mitarbeiter_workspace.jsf" camunda:assignee="demo" name="Mitarbeiter Aktivitaet Waehlen">
       <bpmn2:incoming>SequenceFlow_54</bpmn2:incoming>
       <bpmn2:outgoing>SequenceFlow_2</bpmn2:outgoing>
     </bpmn2:userTask>
@@ -68,7 +68,7 @@
       <bpmn2:outgoing>SequenceFlow_37</bpmn2:outgoing>
     </bpmn2:exclusiveGateway>
     <bpmn2:sequenceFlow id="SequenceFlow_37" name="" sourceRef="ExclusiveGateway_6" targetRef="UserTask_1"/>
-    <bpmn2:serviceTask id="UserTask_13" camunda:expression="${taskUeberpruefenController.call(execution)}" name="Task ueberpruefen">
+    <bpmn2:serviceTask id="UserTask_13" camunda:expression="${taskUeberpruefenController.call(taskId)}" name="Task ueberpruefen">
       <bpmn2:incoming>SequenceFlow_46</bpmn2:incoming>
       <bpmn2:outgoing>SequenceFlow_47</bpmn2:outgoing>
     </bpmn2:serviceTask>
@@ -83,7 +83,7 @@
       <bpmn2:outgoing>SequenceFlow_36</bpmn2:outgoing>
     </bpmn2:serviceTask>
     <bpmn2:sequenceFlow id="SequenceFlow_36" name="" sourceRef="UserTask_8" targetRef="ExclusiveGateway_6"/>
-    <bpmn2:userTask id="UserTask_16" camunda:formKey="app:projektleiter_workspace.jsf" camunda:assignee="demo" name="Aktivitaet Waehlen">
+    <bpmn2:userTask id="UserTask_16" camunda:formKey="app:projektleiter_workspace.jsf" camunda:assignee="demo" name="Projektleiter Aktivitaet Waehlen">
       <bpmn2:incoming>SequenceFlow_62</bpmn2:incoming>
       <bpmn2:outgoing>SequenceFlow_51</bpmn2:outgoing>
     </bpmn2:userTask>

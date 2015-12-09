@@ -1,6 +1,5 @@
 package we.are.awesome;
 
-import java.io.IOException;
 import javax.ejb.Stateless;
 import javax.inject.Named;
 
@@ -8,9 +7,6 @@ import javax.inject.Named;
 @Stateless
 public class EntscheidenObFreierOderDelegierterTaskController extends Controller{
 	
-	/*
-	 * ("taskId","loggedUserId")
-	 */
 	public void submit() {
 		Boolean isFreierTask 	= super.businessProcess.getVariable("isFreierTask");
 		Long taskId 			= super.businessProcess.getVariable("taskId");

@@ -21,8 +21,8 @@ public class LoginController extends Controller {
 		Grouppe userGrouppe 	= isProjektleiter? Grouppe.Projektleiter : Grouppe.Mitarbeiter;
 		UserEntity newUser 		= new UserEntity(userName,userGrouppe);
 		
-		entityManager.persist(newUser);
-		entityManager.flush();
+		super.entityManager.persist(newUser);
+		super.entityManager.flush();
 		
 		super.businessProcess.setVariable("loggedUserId", newUser.getId());
 				
@@ -32,7 +32,7 @@ public class LoginController extends Controller {
 	public List<UserDAO> getUsers(){
 		List<UserDAO> userList = new ArrayList<UserDAO>();	
 
-		Query query = entityManager.createQuery("SELECT u FROM UserEntity u");
+		Query query = super.entityManager.createQuery("SELECT u FROM UserEntity u");
 		List<UserEntity> rs = query.getResultList();
 		for(UserEntity userEntity : rs){
 			userList.add(new UserDAO(userEntity));		

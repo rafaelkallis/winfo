@@ -8,11 +8,11 @@ import javax.inject.Named;
 public class PersonZuweisenController extends Controller {
 
 	public void call(Long taskId,Long assignedUserId) {
-		TaskEntity taskEntity = entityManager.find(TaskEntity.class, taskId);
+		TaskEntity taskEntity = super.entityManager.find(TaskEntity.class, taskId);
 		
 		taskEntity.setAssignedUserId(assignedUserId);
 		
-		entityManager.merge(taskEntity);
-		entityManager.flush();
+		super.entityManager.merge(taskEntity);
+		super.entityManager.flush();
 	}
 }
