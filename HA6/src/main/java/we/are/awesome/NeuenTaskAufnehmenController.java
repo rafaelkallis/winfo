@@ -7,7 +7,7 @@ import javax.inject.Named;
 @Stateless
 public class NeuenTaskAufnehmenController extends Controller{
 
-	public void call(String title, String description) {
+	public void add(String title, String description) {
 		TaskEntity taskEntity = new TaskEntity(title,description);
 		
 		taskEntity.setNeedsReview(false);

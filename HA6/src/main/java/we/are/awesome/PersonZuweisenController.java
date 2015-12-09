@@ -7,7 +7,7 @@ import javax.inject.Named;
 @Stateless
 public class PersonZuweisenController extends Controller {
 
-	public void call(Long taskId,Long assignedUserId) {
+	public void assign(Long taskId,Long assignedUserId) {
 		TaskEntity taskEntity = super.entityManager.find(TaskEntity.class, taskId);
 		
 		taskEntity.setAssignedUserId(assignedUserId);

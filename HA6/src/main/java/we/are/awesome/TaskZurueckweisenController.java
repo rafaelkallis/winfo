@@ -7,7 +7,7 @@ import javax.inject.Named;
 @Stateless
 public class TaskZurueckweisenController extends Controller{
 	
-	public void call(Long taskId) {
+	public void reject(Long taskId) {
 		TaskEntity taskEntity = entityManager.find(TaskEntity.class, taskId);
 		
 		taskEntity.setNeedsReview(true);

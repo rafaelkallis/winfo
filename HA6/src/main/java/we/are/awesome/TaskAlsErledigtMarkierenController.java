@@ -7,7 +7,7 @@ import javax.inject.Named;
 @Stateless
 public class TaskAlsErledigtMarkierenController extends Controller {
 
-	public void call(Long taskId) {
+	public void markAsDone(Long taskId) {
 		
 		TaskEntity taskEntity = super.entityManager.find(TaskEntity.class, taskId);
 		

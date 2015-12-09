@@ -7,11 +7,9 @@ import javax.inject.Named;
 @Stateless
 public class TaskUeberpruefenController extends Controller {
 
-	public void call(Long taskId) {
+	public void review(Long taskId) {
 		TaskEntity taskEntity = super.getTaskEntity(taskId);
-		
 		taskEntity.setNeedsReview(false);
-		
 		super.entityManager.merge(taskEntity);
 		super.entityManager.flush();
 	}
