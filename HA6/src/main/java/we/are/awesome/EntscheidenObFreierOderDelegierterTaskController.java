@@ -7,20 +7,14 @@ import javax.inject.Named;
 @Named
 @Stateless
 public class EntscheidenObFreierOderDelegierterTaskController extends Controller{
-	
-	/*
-	 * ("taskId","loggedUserId")
-	 */
+
 	public void submit() {
 		Boolean isFreierTask 	= super.businessProcess.getVariable("isFreierTask");
 		Long taskId 			= super.businessProcess.getVariable("taskId");
-
 		TaskEntity taskEntity 	= super.getTaskEntity(taskId);
 		taskEntity.setIsFreierTask(isFreierTask);
-		
 		super.entityManager.merge(taskEntity);
 		super.entityManager.flush();
-		
 		super.completeTask();
 	}
 	
