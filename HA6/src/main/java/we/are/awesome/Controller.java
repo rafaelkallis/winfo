@@ -43,27 +43,4 @@ public abstract class Controller {
 			throw new RuntimeException(e);
 		}
 	}
-	
-//	public void assertCurrentTaskId(DelegateExecution execution){
-//		assert(this.businessProcess.getVariable("taskId") == execution.getVariable("taskId"));
-//	}
-//	
-//	public void assertCurrentLoggedUserId(DelegateExecution execution){
-//		assert(this.businessProcess.getVariable("loggedUserId") == execution.getVariable("loggedUserId"));
-//	}
-//	
-//	public void assertTaskTitle(DelegateExecution execution){
-//		assert(this.businessProcess.getVariable("taskTitle") == execution.getVariable("taskTitle"));
-//	}
-	
-//	public void assertTaskDescription(DelegateExecution execution){
-//		assert(this.businessProcess.getVariable("taskDescription") == execution.getVariable("taskDescription"));
-//	}
-//	
-//	public void assertAll(DelegateExecution execution){
-//		this.assertCurrentLoggedUserId(execution);
-//		this.assertCurrentTaskId(execution);
-//		this.assertTaskDescription(execution);
-//		this.assertTaskTitle(execution);
-//	}
 }
