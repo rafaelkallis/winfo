@@ -17,9 +17,9 @@
 
                 <label>Task zum überprüfen auswählen</label>
                 <br/>
-                <h:selectOneMenu value="#{processVariables['selectedTaskId']}" >
-                    <f:selectItems value="#{projektleiterWorkspaceController.getNotReviewedTasks()}" var="task" 
-                    itemLabel="#{task.title}" itemValue="#{task.id}"/>
+                <h:selectOneMenu value="#{processVariables['taskId']}" >
+                    <f:selectItems value="#{projektleiterWorkspaceController.getNotReviewedTasks()}" var="_task" 
+                    itemLabel="#{_task.title}" itemValue="#{_task.id}"/>
                 </h:selectOneMenu>
     	        <br/>
                 <h:commandButton id="ueberptuefen_button" value="Task überprüfen" action="#{projektleiterWorkspaceController.reviewTask()}" />

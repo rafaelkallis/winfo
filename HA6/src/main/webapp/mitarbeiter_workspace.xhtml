@@ -20,8 +20,8 @@
                 <label>Task auswählen</label>
                 <br/>
                 <h:selectOneMenu value="#{processVariables['selectedTaskId']}" >
-                    <f:selectItems value="#{mitarbeiterWorkspaceController.getUserTaskList()}" var="task" 
-                    itemLabel="#{task.title}" itemValue="#{task.id}"/>
+                    <f:selectItems value="#{mitarbeiterWorkspaceController.getUserTaskList()}" var="_task" 
+                    itemLabel="#{_task.title}" itemValue="#{_task.id}"/>
                 </h:selectOneMenu>
     	        <br/>
                 <h:commandButton id="zurueckweisen_button" value="Zurückweisen" action="#{mitarbeiterWorkspaceController.taskZurueckweisen()}" />
