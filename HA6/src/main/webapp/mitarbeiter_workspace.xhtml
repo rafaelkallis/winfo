@@ -19,7 +19,7 @@
             <h:form id="mitarbeiterForm">
                 <label>Task auswählen</label>
                 <br/>
-                <h:selectOneMenu value="#{processVariables['selectedTaskId']}" >
+                <h:selectOneMenu value="#{processVariables['taskId']}" >
                     <f:selectItems value="#{mitarbeiterWorkspaceController.getUserTaskList()}" var="_task" 
                     itemLabel="#{_task.title}" itemValue="#{_task.id}"/>
                 </h:selectOneMenu>

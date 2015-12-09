@@ -22,13 +22,13 @@
                     itemLabel="#{_task.title}" itemValue="#{_task.id}"/>
                 </h:selectOneMenu>
     	        <br/>
-                <h:commandButton id="ueberptuefen_button" value="Task überprüfen" action="#{projektleiterWorkspaceController.reviewTask()}" />
+                <h:commandButton value="Task überprüfen" action="#{projektleiterWorkspaceController.reviewTask()}" />
           	    <br/>
-                <h:commandButton id="logout_button" value="Logout" action="#{projektleiterWorkspaceController.logout()}" />
+                <h:commandButton value="Logout" action="#{projektleiterWorkspaceController.logout()}" />
             </h:form>
         </div>
         <div id="rightdock" align="right" >
-            <h:form id="newtaskForm">
+            <h:form >
                 <label>Neuer Task anlegen</label>
                 <br/>
                 <label>Titel eingeben</label>
