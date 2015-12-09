@@ -13,8 +13,7 @@ public class NeuenTaskAufnehmenController extends Controller{
 		taskEntity.setNeedsReview(false);
 		
 		entityManager.persist(taskEntity);
-		
-		super.businessProcess.setVariable("taskId", taskEntity.id);
+		super.businessProcess.setVariable("taskId", taskEntity.getId());
 		
 		entityManager.flush();
 	}
