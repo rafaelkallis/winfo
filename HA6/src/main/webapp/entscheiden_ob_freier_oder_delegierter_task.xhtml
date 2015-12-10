@@ -12,21 +12,21 @@
     </h:head>
     <h:body>
         <div  align="left" >
-            <h:form id="freeForm">
+            <h:form>
                 <label>Entscheiden ob freier oder delegierter Task</label>
                 <br/>
                 <label>Titel</label>
                 <br/>
-                <label>#{entscheidenObFreierOderDelegierterTaskController.getTaskDAO().title}</label>
+                <label>#{entscheidenObFreierOderDelegierterTaskController.getTaskDAO(processVariables['taskId']).title}</label>
                 <br/>
                 <label>Description</label>
                 <br/>
-                <label>#{entscheidenObFreierOderDelegierterTaskController.getTaskDAO().description}</label>
+                <label>#{entscheidenObFreierOderDelegierterTaskController.getTaskDAO(processVariables['taskId']).description}</label>
                 <br/>
                 <br/>
                 <label>Ist der ausgewählte Task frei?</label> <h:selectBooleanCheckbox  value="#{processVariables['isFreierTask']}"/>
                 <br/>
-                <h:commandButton id="freiertask_button" value="Auswahl bestätigen" action="#{entscheidenObFreierOderDelegierterTaskController.submit()}" />
+                <h:commandButton id="freiertask_button" value="Auswahl bestätigen" action="#{entscheidenObFreierOderDelegierterTaskController.submit(processVariables['taskId'],processVariables['isFreierTask'])}" />
                 <br/>
             </h:form>
         </div>

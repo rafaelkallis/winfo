@@ -7,9 +7,8 @@ import javax.inject.Named;
 @Stateless
 public class EntscheidenObFreierOderDelegierterTaskController extends Controller{
 	
-	public void submit() {
-		Boolean isFreierTask 	= super.businessProcess.getVariable("isFreierTask");
-		Long taskId 			= Long.parseLong(super.businessProcess.getVariable("taskId").toString()); //FIXME: getVariable() returns String instead of Long when Task was made by Mitarbeiter
+	public void submit(Long taskId, Boolean isFreierTask) {
+		
 		TaskEntity taskEntity 	= super.getTaskEntity(taskId);
 		taskEntity.setIsFreierTask(isFreierTask);
 		super.entityManager.merge(taskEntity);
@@ -17,12 +16,8 @@ public class EntscheidenObFreierOderDelegierterTaskController extends Controller
 		super.completeTask();
 	}
 	
-	public TaskDAO getTaskDAO(){
-		Long taskId = Long.parseLong(super.businessProcess.getVariable("taskId").toString()); //FIXME: getVariable() returns String instead of Long when Task was made by Mitarbeiter
-		return new TaskDAO(super.getTaskEntity(taskId));
-	}
-
-	public Boolean getIsFreierTask(Long taskId){
-		return super.getTaskEntity(taskId).getIsFreierTask();
+	public TaskDAO getTaskDAO(Long taskId){
+ 
+ 		return new TaskDAO(super.getTaskEntity(taskId));
 	}
 }
