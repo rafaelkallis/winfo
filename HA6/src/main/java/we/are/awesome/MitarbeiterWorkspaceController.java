@@ -12,7 +12,7 @@ public class MitarbeiterWorkspaceController extends WorkspaceController{
 
 	public void zurueckweisenAction(){
 		
-		super.businessProces s.setVariable("actionMitarbeiterWorkspaceController", "zurueckweisen");
+		super.businessProcess.setVariable("actionMitarbeiterWorkspaceController", "zurueckweisen");
 		super.completeTask();
 	}
 

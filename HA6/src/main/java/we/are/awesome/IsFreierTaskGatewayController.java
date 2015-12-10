@@ -5,7 +5,7 @@ import javax.inject.Named;
 
 @Named
 @Stateless
-public class IsFreierTaskGatewayController exntends Controller{
+public class IsFreierTaskGatewayController extends Controller{
 	
 	public Boolean getIsFreierTask(Long taskId){
 		
