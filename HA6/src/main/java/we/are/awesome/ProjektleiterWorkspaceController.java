@@ -8,23 +8,23 @@ import javax.persistence.TypedQuery;
 
 @Named
 @Stateless
-public class ProjektleiterWorkspaceController extends WorkspaceController {
+public class ProjektleiterWorkspaceController extends Controller {
 
-	public void newTaskAction(){
+	public void aufnehmenAction(){
 
-		super.businessProcess.setVariable("actionProjektleiterWorkspaceController","newTask");
+		super.businessProcess.setVariable("actionProjektleiterWorkspace","aufnehmen");
 		super.completeTask();
 	}
 
-	public void reviewTaskAction(){
+	public void ueberpruefenAction(){
 
-		super.businessProcess.setVariable("actionProjektleiterWorkspaceController","reviewTask");	
+		super.businessProcess.setVariable("actionProjektleiterWorkspace","ueberpruefen");	
 		super.completeTask();
 	}
 
 	public void logoutAction(){
 
-		super.businessProcess.setVariable("actionProjektleiterWorkspaceController","logout");
+		super.businessProcess.setVariable("actionProjektleiterWorkspace","logout");
 		super.completeTask();
 	}
 	

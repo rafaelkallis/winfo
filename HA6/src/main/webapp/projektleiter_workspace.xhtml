@@ -22,7 +22,7 @@
                     itemLabel="#{_task.title}" itemValue="#{_task.id}"/>
                 </h:selectOneMenu>
     	        <br/>
-                <h:commandButton value="Task überprüfen" action="#{projektleiterWorkspaceController.reviewTaskAction()}" />
+                <h:commandButton value="Task überprüfen" action="#{projektleiterWorkspaceController.ueberpruefenAction()}" />
           	    <br/>
                 <h:commandButton value="Logout" action="#{projektleiterWorkspaceController.logoutAction()}" />
             </h:form>
@@ -37,7 +37,7 @@
                 <label>Beschreibung eingeben</label>
                 <h:inputText value="#{processVariables['description']}" required="true"/>
                 <br/>
-                <h:commandButton id="newtask_button" value="Neuer Task erstellen" action="#{projektleiterWorkspaceController.newTaskAction()}" />
+                <h:commandButton id="newtask_button" value="Neuer Task erstellen" action="#{projektleiterWorkspaceController.aufnehmenAction()}" />
                 <br/>
             </h:form>
         </div>
