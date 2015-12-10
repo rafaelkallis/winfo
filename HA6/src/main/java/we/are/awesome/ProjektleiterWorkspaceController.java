@@ -10,24 +10,27 @@ import javax.persistence.TypedQuery;
 @Stateless
 public class ProjektleiterWorkspaceController extends WorkspaceController {
 
-	public void newTask(){
-		super.businessProcess.setVariable("action","newTask");
+	public void newTaskAction(){
+
+		super.businessProcess.setVariable("actionProjektleiterWorkspaceController","newTask");
 		super.completeTask();
 	}
 
-	public void reviewTask(){
-		super.businessProcess.setVariable("action","reviewTask");	
+	public void reviewTaskAction(){
+
+		super.businessProcess.setVariable("actionProjektleiterWorkspaceController","reviewTask");	
 		super.completeTask();
 	}
 
-	public void logout(){
-		super.businessProcess.setVariable("action","logout");
+	public void logoutAction(){
+
+		super.businessProcess.setVariable("actionProjektleiterWorkspaceController","logout");
 		super.completeTask();
 	}
 	
 	public List<TaskDAO> getNotReviewedTasks(){
+
 		List<TaskDAO> taskList = new ArrayList<TaskDAO>();
-		
 		TypedQuery<TaskEntity> query = super.entityManager.createQuery("SELECT t FROM TaskEntity t WHERE t.needsReview = TRUE",TaskEntity.class);
 		List<TaskEntity> rs = query.getResultList();
 		for(TaskEntity taskEntity : rs){
