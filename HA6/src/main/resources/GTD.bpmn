@@ -7,10 +7,10 @@
       <bpmn2:outgoing>SequenceFlow_24</bpmn2:outgoing>
     </bpmn2:exclusiveGateway>
     <bpmn2:sequenceFlow id="SequenceFlow_21" name="Ja" sourceRef="ExclusiveGateway_4" targetRef="ExclusiveGateway_11">
-      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression">${loginController.getIsProjektleiter(loggedUserId)}</bpmn2:conditionExpression>
+      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression">${isProjektleiterGatewayController.getIsProjektleiter(loggedUserId)}</bpmn2:conditionExpression>
     </bpmn2:sequenceFlow>
     <bpmn2:sequenceFlow id="SequenceFlow_24" name="Nein" sourceRef="ExclusiveGateway_4" targetRef="ExclusiveGateway_10">
-      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression">${not loginController.getIsProjektleiter(loggedUserId)}</bpmn2:conditionExpression>
+      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression">${not isProjektleiterGatewayController.getIsProjektleiter(loggedUserId)}</bpmn2:conditionExpression>
     </bpmn2:sequenceFlow>
     <bpmn2:userTask id="UserTask_2" camunda:formKey="app:mitarbeiter_workspace.jsf" camunda:assignee="demo" name="Mitarbeiter Aktivität Wählen">
       <bpmn2:incoming>SequenceFlow_54</bpmn2:incoming>
@@ -53,10 +53,10 @@
       <bpmn2:outgoing>SequenceFlow_10</bpmn2:outgoing>
     </bpmn2:exclusiveGateway>
     <bpmn2:sequenceFlow id="SequenceFlow_9" name="Nein" sourceRef="ExclusiveGateway_2" targetRef="UserTask_3">
-      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression">${not entscheidenObFreierOderDelegierterTaskController.getIsFreierTask(taskId)}</bpmn2:conditionExpression>
+      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression">${not isFreierTaskGatewayController.getIsFreierTask(taskId)}</bpmn2:conditionExpression>
     </bpmn2:sequenceFlow>
     <bpmn2:sequenceFlow id="SequenceFlow_10" name="Ja" sourceRef="ExclusiveGateway_2" targetRef="ExclusiveGateway_13">
-      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression">${entscheidenObFreierOderDelegierterTaskController.getIsFreierTask(taskId)}</bpmn2:conditionExpression>
+      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression">${isFreierTaskGatewayController.getIsFreierTask(taskId)}</bpmn2:conditionExpression>
     </bpmn2:sequenceFlow>
     <bpmn2:userTask id="UserTask_3" camunda:formKey="app:person_auswaehlen.jsf" camunda:assignee="demo" name="Person Auswählen">
       <bpmn2:incoming>SequenceFlow_9</bpmn2:incoming>
