@@ -2,10 +2,8 @@ package we.are.awesome;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.ejb.Stateless;
 import javax.inject.Named;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 @Named
