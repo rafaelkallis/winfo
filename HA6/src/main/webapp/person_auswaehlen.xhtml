@@ -5,31 +5,30 @@
   xmlns:f="http://java.sun.com/jsf/core">
 
 <f:view>
-  <f:metadata>
-    <!-- Start a new process instance. The Process Definition Key is read internally from
-         request parameters and cached in the CDI conversation scope.
-    -->
-    <f:event type="preRenderView" listener="#{camundaTaskForm.startTaskForm()}" />
-  </f:metadata>
-  <h:head>
-  
-  </h:head>
-  <h:body>
-    <h1></h1>
-    <div id="leftdock" align="left">
-    <h:form id="auswahlForm">
-
-        <label>Mitarbeiter auswählen</label>
-        <br/>
-        <h:selectOneMenu value="#{processVariables['assignedUserId']}" >
-            <f:selectItems value="#{personAuswaehlenController.getMitarbeiterUserList()}" var="_user" 
-            itemLabel="#{_user.name}" itemValue="#{_user.id}"/>
-        </h:selectOneMenu>
-      <h:commandButton id="personwaehlen_button" value="Auswahl bestätigen" action="#{personAuswaehlenController.submit()}" />
-
-    </h:form>
-    </div>
-       
-  </h:body>
+    <f:metadata>
+        <f:event type="preRenderView" listener="#{camundaTaskForm.startTaskForm()}" />
+    </f:metadata>
+    <h:head> </h:head>
+    <h:body>
+        <h1></h1>
+        <div id="leftdock" align="left">
+            <h:form id="auswahlForm">
+                <label>Titel</label>
+                    <br/>
+                    <label>#{personAuswaehlenController.getTaskDAO(processVariables['taskId']).title}</label>
+                    <br/>
+                    <label>Description</label>
+                    <br/>
+                    <label>#{personAuswaehlenController.getTaskDAO(processVariables['taskId']).description}</label>
+                <label>Mitarbeiter auswählen</label>
+                <br/>
+                <h:selectOneMenu value="#{processVariables['assignedUserId']}" >
+                    <f:selectItems value="#{personAuswaehlenController.getMitarbeiterUserList()}" var="_user" 
+                itemLabel="#{_user.name}" itemValue="#{_user.id}"/>
+                </h:selectOneMenu>
+                <h:commandButton id="personwaehlen_button" value="Auswahl bestätigen" action="#{personAuswaehlenController.submit()}" />
+            </h:form>
+        </div>
+    </h:body>
 </f:view>
 </html>

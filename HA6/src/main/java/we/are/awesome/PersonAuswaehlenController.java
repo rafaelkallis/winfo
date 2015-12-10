@@ -16,14 +16,14 @@ public class PersonAuswaehlenController extends Controller{
 		super.completeTask();
 	}
 	
-	public TaskDAO getTaskDAO(){
-		Long taskId = super.businessProcess.getVariable("taskId");
+	public TaskDAO getTaskDAO(Long taskId){
+ 
 		return new TaskDAO(super.getTaskEntity(taskId));
 	}
 	
 	public List<UserDAO> getMitarbeiterUserList(){
-		List<UserDAO> userList = new ArrayList<UserDAO>();	
 
+		List<UserDAO> userList = new ArrayList<UserDAO>();	
 		TypedQuery<UserEntity> query = super.entityManager.createQuery("SELECT u FROM UserEntity u WHERE u.isProjektleiter = FALSE",UserEntity.class);
 		List<UserEntity> rs = query.getResultList();
 		for(UserEntity userEntity : rs){
