@@ -8,35 +8,36 @@ import javax.persistence.TypedQuery;
 
 @Named
 @Stateless
-public class MitarbeiterWorkspaceController extends WorkspaceController{
-
+public class MitarbeiterWorkspaceController extends Controller{
+	
 	public void zurueckweisenAction(){
 		
-		super.businessProcess.setVariable("actionMitarbeiterWorkspaceController", "zurueckweisen");
+		super.businessProcess.setVariable("actionMitarbeiterWorkspace", "zurueckweisen");
 		super.completeTask();
 	}
 
 	public void bearbeitenAction(){
 		
-		super.businessProcess.setVariable("actionMitarbeiterWorkspaceController", "bearbeiten");
+		super.businessProcess.setVariable("actionMitarbeiterWorkspace", "bearbeiten");
 		super.completeTask();
 	}
 
-	public void taskVerschiebenAction(){
+	//TODO
+	public void verschiebenAction(){
 		
-		super.businessProcess.setVariable("actionMitarbeiterWorkspaceController", "verschieben");
+		super.businessProcess.setVariable("actionMitarbeiterWorkspace", "verschieben");
 		super.completeTask();
 	}
 
-	public void newTaskAction(){
+	public void aufnehmenAction(){
 		
-		super.businessProcess.setVariable("actionMitarbeiterWorkspaceController", "aufnehmen");
+		super.businessProcess.setVariable("actionMitarbeiterWorkspace", "aufnehmen");
 		super.completeTask();
 	}
 
 	public void logoutAction(){
 		
-		super.businessProcess.setVariable("actionMitarbeiterWorkspaceController","logout");
+		super.businessProcess.setVariable("actionMitarbeiterWorkspace","logout");
 		super.completeTask();
 	}
 	
