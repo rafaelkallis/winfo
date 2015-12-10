@@ -5,36 +5,27 @@
   xmlns:f="http://java.sun.com/jsf/core">
 
 <f:view>
-  <f:metadata>
-    <!-- Start a new process instance. The Process Definition Key is read internally from
-         request parameters and cached in the CDI conversation scope.
-    -->
-    <f:event type="preRenderView" listener="#{camundaTaskForm.startTaskForm()}" />
-  </f:metadata>
-  <h:head>
-  
-  </h:head>
-  <h:body>
-    <h1></h1>
-    <div id="leftdock" align="left">
-    <h:form id="bearbeitenForm">
-
-          <label>Ausgewählter Task</label>
-          <br/>
-        <label>Titel: </label>
-         <h:outputLabel value="#{taskBearbeitenController.getTaskDAO().title}"/>
-	</h:form>
- <br/>
-  <label >Beschreibung: </label>
-  <h:outputLabel value="#{taskBearbeitenController.getTaskDAO().description}"/>
-
- <br/>
-          
-	<br/>
-      <h:commandButton id="bearbeiten_button" value="Bearbeiten" action="#{taskBearbeitenController.submit()}" />
-      	<br/>
- </div>
-   
-  </h:body>
+    <f:metadata>
+        <f:event type="preRenderView" listener="#{camundaTaskForm.startTaskForm()}" />
+    </f:metadata>
+    <h:head> </h:head>
+    <h:body>
+        <h1></h1>
+        <div id="leftdock" align="left">
+            <h:form id="bearbeitenForm">
+                <label>Ausgewählter Task</label>
+                <br/>
+                <label>Titel:</label>
+                <h:outputLabel value="#{taskBearbeitenController.getTaskDAO(processVariables['taskId']).title}"/>
+    	    </h:form>
+            <br/>
+            <label >Beschreibung: </label>
+            <h:outputLabel value="#{taskBearbeitenController.getTaskDAO(processVariables['taskId']).description}"/>
+            <br/>          
+    	    <br/>
+            <h:commandButton id="bearbeiten_button" value="Bearbeiten" action="#{taskBearbeitenController.submit()}" />
+          	<br/>
+        </div>
+    </h:body>
 </f:view>
 </html>

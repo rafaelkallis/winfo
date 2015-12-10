@@ -11,8 +11,8 @@ public class TaskBearbeitenController extends Controller{
 		super.completeTask();
 	}
 	
-	public TaskDAO getTaskDAO(){
-		Long taskId = Long.parseLong(super.businessProcess.getVariable("taskId").toString()); //FIXME: getVariable() returns String instead of Long when Task was made by Mitarbeiter
+	public TaskDAO getTaskDAO(Long taskId){
+
 		return new TaskDAO(super.getTaskEntity(taskId));
 	}
 }
