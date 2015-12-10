@@ -25,10 +25,6 @@
             <f:selectItems value="#{personAuswaehlenController.getMitarbeiterUserList()}" var="_user" 
             itemLabel="#{_user.name}" itemValue="#{_user.id}"/>
         </h:selectOneMenu>
-            <br/>
-            <br/>
-            <label>Ausgewählter Mitarbeiter hat momentan #{personAuswaehlenController.getNAssignedTasks()} zugewiesene Tasks</label>  
-	        <br/>
       <h:commandButton id="personwaehlen_button" value="Auswahl bestätigen" action="#{personAuswaehlenController.submit()}" />
 
     </h:form>

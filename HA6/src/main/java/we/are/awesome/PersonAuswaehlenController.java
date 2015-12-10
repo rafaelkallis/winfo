@@ -31,14 +31,4 @@ public class PersonAuswaehlenController extends Controller{
 		}
 		return userList;
 	}
-	
-	public Long getNAssignedTasks(){		
-		Long userId = Long.parseLong(super.businessProcess.getVariable("assignedUserId").toString());
-		System.out.println("UserId = "+userId);
-		// FIXME: JPQL Count sucks
-		TypedQuery<TaskEntity> query = super.entityManager.createQuery("SELECT t FROM TaskEntity t WHERE t.assignedUserId = :userId AND t.isDone = FALSE",TaskEntity.class).setParameter("userId", userId);
-		Long NTasks = (long) query.getResultList().size();
-		System.out.println("Size of NAssignedTasks = "+NTasks);
-		return NTasks;
-	}
 }
