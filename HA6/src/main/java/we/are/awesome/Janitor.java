@@ -8,8 +8,8 @@ import org.camunda.bpm.engine.delegate.DelegateExecution;
 @Stateless
 public class Janitor {
 	
-	private static final String[] PROJEKTLEITER_WORKSPACE_PROCESS_VARIABLES = {"taskId","title","description","isFreierTask","assignedUserId"};
-	private static final String[] MITARBEITER_WORKSPACE_PROCESS_VARIABLES = {"taskId","title","description"}; 
+	private static final String[] PROJEKTLEITER_WORKSPACE_PROCESS_VARIABLES = {"taskId","title","description","isFreierTask","assignedUserId","actionProjektleiterWorkspace"};
+	private static final String[] MITARBEITER_WORKSPACE_PROCESS_VARIABLES = {"taskId","title","description","actionMitarbeiterWorkspace"}; 
 	
 	public void sanitizeProjektleiterProcessVariables(DelegateExecution execution){
 		for(String processVariable : Janitor.PROJEKTLEITER_WORKSPACE_PROCESS_VARIABLES){
