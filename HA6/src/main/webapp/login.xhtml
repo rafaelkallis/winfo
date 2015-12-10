@@ -6,9 +6,6 @@
 
 <f:view>
   	<f:metadata>
-    <!-- Start a new process instance. The Process Definition Key is read internally from
-         request parameters and cached in the CDI conversation scope.
-    -->
     	<f:event type="preRenderView" listener="#{camundaTaskForm.startProcessInstanceByKeyForm()}" />
  	</f:metadata>
 	<h:head></h:head>
@@ -35,7 +32,7 @@
 				<label>Projektleiter</label>
 				<h:selectBooleanCheckbox value="#{processVariables['isProjektleiter']}" />
 				<br/>
-				<h:commandButton id="register_button" value="Registrieren" action="#{loginController.register()}" />
+				<h:commandButton id="register_button" value="Registrieren" action="#{loginController.register(processVariables['userName'],processVariables['isProjektleiter'])}" />
 				<br/>
 			</h:form>
 		</div>
