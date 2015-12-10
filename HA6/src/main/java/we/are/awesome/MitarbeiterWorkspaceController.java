@@ -10,35 +10,41 @@ import javax.persistence.TypedQuery;
 @Stateless
 public class MitarbeiterWorkspaceController extends WorkspaceController{
 
-	public void taskZurueckweisen(){
-		super.businessProcess.setVariable("action", "zurueckweisen");
+	public void zurueckweisenAction(){
+		
+		super.businessProces s.setVariable("actionMitarbeiterWorkspaceController", "zurueckweisen");
 		super.completeTask();
 	}
 
-	public void taskBearbeiten(){
-		super.businessProcess.setVariable("action", "bearbeiten");
+	public void bearbeitenAction(){
+		
+		super.businessProcess.setVariable("actionMitarbeiterWorkspaceController", "bearbeiten");
 		super.completeTask();
 	}
 
-	public void taskVerschieben(){
-		super.businessProcess.setVariable("action", "verschieben");
+	public void taskVerschiebenAction(){
+		
+		super.businessProcess.setVariable("actionMitarbeiterWorkspaceController", "verschieben");
 		super.completeTask();
 	}
 
-	public void newTask(){
-		super.businessProcess.setVariable("action", "aufnehmen");
+	public void newTaskAction(){
+		
+		super.businessProcess.setVariable("actionMitarbeiterWorkspaceController", "aufnehmen");
 		super.completeTask();
 	}
 
-	public void logout(){
-		super.businessProcess.setVariable("action","logout");
+	public void logoutAction(){
+		
+		super.businessProcess.setVariable("actionMitarbeiterWorkspaceController","logout");
 		super.completeTask();
 	}
 	
 	public List<TaskDAO> getUserTaskList(){
+		
 		List<TaskDAO> taskList = new ArrayList<TaskDAO>();
 		Long userId = (Long)super.businessProcess.getVariable("loggedUserId");
-		TypedQuery<TaskEntity> query = entityManager.createQuery("SELECT t FROM TaskEntity t WHERE (t.assignedUserId='"+userId+"' OR t.isFreierTask=TRUE) AND t.isDone=FALSE",TaskEntity.class);
+		TypedQuery<TaskEntity> query = entityManager.createQuery("SELECT t FROM TaskEntity t WHERE (t.assignedUserId = :userId OR t.isFreierTask = TRUE) AND t.isDone = FALSE",TaskEntity.class).setParameter("userId",userId);
 		List<TaskEntity> rs = query.getResultList();
 		for(TaskEntity taskEntity : rs){
 			taskList.add(new TaskDAO(taskEntity));

@@ -16,7 +16,7 @@
   </h:head>
   <h:body>
         <div id="leftdock" align="left">
-            <h:form id="mitarbeiterForm">
+            <h:form>
                 <label>Task auswählen</label>
                 <br/>
                 <h:selectOneMenu value="#{processVariables['taskId']}" >
@@ -24,15 +24,15 @@
                     itemLabel="#{_task.title}" itemValue="#{_task.id}"/>
                 </h:selectOneMenu>
     	        <br/>
-                <h:commandButton id="zurueckweisen_button" value="Zurückweisen" action="#{mitarbeiterWorkspaceController.taskZurueckweisen()}" />
+                <h:commandButton id="zurueckweisen_button" value="Zurückweisen" action="#{mitarbeiterWorkspaceController.zurueckweisenAction()}" />
           	    <br/>
-                <h:commandButton id="bearbeiten_button" value="Bearbeiten" action="#{mitarbeiterWorkspaceController.taskBearbeiten()}" />
+                <h:commandButton id="bearbeiten_button" value="Bearbeiten" action="#{mitarbeiterWorkspaceController.bearbeitenAction()}" />
           	    <br/>
-                <h:commandButton id="logout_button" value="Logout" action="#{mitarbeiterWorkspaceController.logout()}" />
+                <h:commandButton id="logout_button" value="Logout" action="#{mitarbeiterWorkspaceController.logoutAction()}" />
             </h:form>
         </div>
         <div id="rightdock" align="right" >
-            <h:form id="newtaskForm">
+            <h:form>
                 <label>Neuer Task anlegen</label>     
                 <br/>
                 <label>Titel eingeben</label>
@@ -41,7 +41,7 @@
                 <label>Beschreibung eingeben</label>
                 <h:inputText value="#{processVariables['description']}" required="true" />
                 <br/>
-                <h:commandButton id="newtask_button" value="Neuer Task erstellen" action="#{mitarbeiterWorkspaceController.newTask()}" />
+                <h:commandButton id="newtask_button" value="Neuer Task erstellen" action="#{mitarbeiterWorkspaceController.newTaskAction()}" />
                 <br/>
             </h:form>
         </div>
