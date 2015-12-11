@@ -19,14 +19,17 @@ public abstract class Controller {
 	protected EntityManager entityManager;
 	
 	protected UserEntity getUserEntity(Long id){
-		return entityManager.find(UserEntity.class, id);
+		
+		return this.entityManager.find(UserEntity.class, id);
 	}
 	
 	protected TaskEntity getTaskEntity(Long id){
-		return entityManager.find(TaskEntity.class, id);
+		
+		return this.entityManager.find(TaskEntity.class, id);
 	}
 	
 	protected void completeTask(){
+		
 		try {
 			this.taskForm.completeTask();
 		} catch (IOException e) {
