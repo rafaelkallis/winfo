@@ -11,6 +11,7 @@ import javax.persistence.TypedQuery;
 public class PersonAuswaehlenController extends Controller{
 	
 	public void submit(){
+		
 		super.completeTask();
 	}
 	

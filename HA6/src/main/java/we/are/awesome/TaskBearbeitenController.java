@@ -8,6 +8,7 @@ import javax.inject.Named;
 public class TaskBearbeitenController extends Controller{
 	
 	public void submit(){
+		
 		super.completeTask();
 	}
 	

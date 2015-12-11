@@ -10,7 +10,6 @@ public class TaskAlsErledigtMarkierenController extends Controller {
 	public void markAsDone(Long taskId) {
 		
 		TaskEntity taskEntity = super.entityManager.find(TaskEntity.class, taskId);
-		
 		taskEntity.setIsDone(true);				
 		super.entityManager.merge(taskEntity);
 		super.entityManager.flush();
