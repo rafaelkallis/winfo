@@ -139,7 +139,7 @@
       <bpmn2:outgoing>SequenceFlow_55</bpmn2:outgoing>
     </bpmn2:serviceTask>
     <bpmn2:sequenceFlow id="SequenceFlow_55" name="" sourceRef="ServiceTask_6" targetRef="ExclusiveGateway_12"/>
-    <bpmn2:serviceTask id="ServiceTask_4" camunda:expression="${taskAlsErledigtmarkierenController.markAsDone(taskId)}" name="Task als erledigt markieren">
+    <bpmn2:serviceTask id="ServiceTask_4" camunda:expression="${taskAlsErledigtMarkierenController.markAsDone(taskId)}" name="Task als erledigt markieren">
       <bpmn2:incoming>SequenceFlow_17</bpmn2:incoming>
       <bpmn2:outgoing>SequenceFlow_56</bpmn2:outgoing>
     </bpmn2:serviceTask>

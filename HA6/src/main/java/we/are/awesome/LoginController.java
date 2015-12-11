@@ -1,5 +1,6 @@
 package we.are.awesome;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
