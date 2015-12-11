@@ -16,7 +16,7 @@ public class LoginController extends Controller {
 		this.completeProcessInstanceForm();
 	}
 	
-	protected void completeProcessInstanceForm(){
+	private void completeProcessInstanceForm(){
 		
 		try {
 			this.taskForm.completeProcessInstanceForm();
