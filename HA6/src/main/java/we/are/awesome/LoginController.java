@@ -12,9 +12,18 @@ public class LoginController extends Controller {
 		
 	public void login(){
 
-		super.completeProcessInstanceForm();
+		this.completeProcessInstanceForm();
 	}
 	
+	protected void completeProcessInstanceForm(){
+		
+		try {
+			this.taskForm.completeProcessInstanceForm();
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
 	public void register(String userName, Boolean isProjektleiter){
 		 		
 		UserEntity newUser 		= new UserEntity(userName,isProjektleiter);	

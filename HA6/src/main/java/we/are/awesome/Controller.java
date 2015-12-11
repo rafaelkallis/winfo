@@ -26,14 +26,6 @@ public abstract class Controller {
 		return entityManager.find(TaskEntity.class, id);
 	}
 	
-	protected void completeProcessInstanceForm(){
-		try {
-			this.taskForm.completeProcessInstanceForm();
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		}
-	}
-	
 	protected void completeTask(){
 		try {
 			this.taskForm.completeTask();
