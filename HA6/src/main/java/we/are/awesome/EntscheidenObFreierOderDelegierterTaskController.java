@@ -1,5 +1,7 @@
 package we.are.awesome;
 
+import java.io.IOException;
+
 import javax.ejb.Stateless;
 import javax.inject.Named;
 
@@ -13,7 +15,16 @@ public class EntscheidenObFreierOderDelegierterTaskController extends Controller
 		taskEntity.setIsFreierTask(isFreierTask);
 		super.entityManager.merge(taskEntity);
 		super.entityManager.flush();
-		super.completeTask();
+		this.completeTask();
+	}
+	
+	private void completeTask(){
+		
+		try {
+			this.taskForm.completeTask();
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
 	}
 	
 	public TaskDAO getTaskDAO(Long taskId){
