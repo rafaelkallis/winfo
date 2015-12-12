@@ -10,21 +10,17 @@
     </f:metadata>
     <h:head> </h:head>
     <h:body>
-        <h1></h1>
-        <div id="leftdock" align="left">
-            <h:form id="auswahlForm">
-                <label>Titel</label>
-                    <br/>
-                    <label>#{personAuswaehlenController.getTaskDAO(processVariables['taskId']).title}</label>
-                    <br/>
-                    <label>Description</label>
-                    <br/>
-                    <label>#{personAuswaehlenController.getTaskDAO(processVariables['taskId']).description}</label>
-                <label>Mitarbeiter auswählen</label>
+        <div>
+            <h:form>
+                <p>Titel:<br/>
+                #{personAuswaehlenController.getTaskDAO(processVariables['taskId']).title}<br/>
+                Beschreibung:<br/>
+                #{personAuswaehlenController.getTaskDAO(processVariables['taskId']).description}<br/>
                 <br/>
+                Mitarbeiter auswählen:<br/></p>
                 <h:selectOneMenu value="#{processVariables['assignedUserId']}" >
                     <f:selectItems value="#{personAuswaehlenController.getMitarbeiterUserList()}" var="_user" 
-                itemLabel="#{_user.name}" itemValue="#{_user.id}"/>
+                	itemLabel="#{_user.name}" itemValue="#{_user.id}"/>
                 </h:selectOneMenu>
                 <h:commandButton id="personwaehlen_button" value="Auswahl bestätigen" action="#{personAuswaehlenController.submit()}" />
             </h:form>

@@ -15,7 +15,7 @@
                 <label>Task auswählen</label>
                 <br/>
                 <h:selectOneMenu value="#{processVariables['taskId']}" >
-                    <f:selectItems value="#{mitarbeiterWorkspaceController.getUserTaskList()}" var="_task" 
+                    <f:selectItems value="#{mitarbeiterWorkspaceController.getUserTaskList(processVariables['loggedUserId'])}" var="_task" 
                     itemLabel="#{_task.title}" itemValue="#{_task.id}"/>
                 </h:selectOneMenu>
     	        <br/>
