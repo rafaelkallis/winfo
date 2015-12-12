@@ -9,13 +9,20 @@
         <f:event type="preRenderView" listener="#{camundaTaskForm.startTaskForm()}" />
     </f:metadata>
     <h:head>
-  
+        <title>GTD | Bearbeiten</title>
     </h:head>
     <h:body>
-	    <h:form id="task_controls">
-	    	<h:commandButton id="postpone_button" value="Verschieben" action="#{taskBearbeitenController.postpone()}" />
-	        <h:commandButton id="done_button" value="Fertig" action="#{taskBearbeitenController.complete(processVariables['taskId'])}" />
-	    </h:form>
+        <div id="container" style="margin:0px auto; width:50%;">
+            <h3>Entscheiden ob freier oder delegierter Task</h3>
+            <h5>Titel</h5>
+            <p>#{entscheidenObFreierOderDelegierterTaskController.getTaskDAO(processVariables['taskId']).title}</p>
+            <h5>Description</h5>
+            <p>#{entscheidenObFreierOderDelegierterTaskController.getTaskDAO(processVariables['taskId']).description}</p>
+            <h:form id="task_controls">
+                <h:commandButton id="postpone_button" value="Verschieben" action="#{taskBearbeitenController.postpone()}" />
+                <h:commandButton id="done_button" value="Fertig" action="#{taskBearbeitenController.complete(processVariables['taskId'])}" />
+            </h:form>
+        </div>    
     </h:body>
 </f:view>
 </html>

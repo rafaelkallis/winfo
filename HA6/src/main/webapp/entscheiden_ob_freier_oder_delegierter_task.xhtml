@@ -8,26 +8,21 @@
     <f:metadata>
         <f:event type="preRenderView" listener="#{camundaTaskForm.startTaskForm()}" />
     </f:metadata>
-    <h:head>  
+    <h:head>
+        <title>GTD | Frei oder Delegieren</title> 
     </h:head>
     <h:body>
         <div id="container" style="margin:0px auto; width:50%;">
-            <h:form>
-                <label>Entscheiden ob freier oder delegierter Task</label>
+            <h3>Entscheiden ob freier oder delegierter Task</h3>
+            <h5>Titel</h5>
+            <p>#{entscheidenObFreierOderDelegierterTaskController.getTaskDAO(processVariables['taskId']).title}</p>
+            <h5>Description</h5>
+            <p>#{entscheidenObFreierOderDelegierterTaskController.getTaskDAO(processVariables['taskId']).description}</p>
+            <h4>Ist der ausgewählte Task frei?</h4>
+            <h:form id="entscheiden_freier_delegierter_form">
+                <h:selectBooleanCheckbox  value="#{processVariables['isFreierTask']}"/>
                 <br/>
-                <label>Titel</label>
-                <br/>
-                <label>#{entscheidenObFreierOderDelegierterTaskController.getTaskDAO(processVariables['taskId']).title}</label>
-                <br/>
-                <label>Description</label>
-                <br/>
-                <label>#{entscheidenObFreierOderDelegierterTaskController.getTaskDAO(processVariables['taskId']).description}</label>
-                <br/>
-                <br/>
-                <label>Ist der ausgewählte Task frei?</label> <h:selectBooleanCheckbox  value="#{processVariables['isFreierTask']}"/>
-                <br/>
-                <h:commandButton id="freiertask_button" value="Auswahl bestätigen" action="#{entscheidenObFreierOderDelegierterTaskController.submit(processVariables['taskId'],processVariables['isFreierTask'])}" />
-                <br/>
+                <h:commandButton id="freiertask_button" value="bestätigen" action="#{entscheidenObFreierOderDelegierterTaskController.submit(processVariables['taskId'],processVariables['isFreierTask'])}" />
             </h:form>
         </div>
     </h:body>

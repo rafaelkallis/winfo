@@ -8,16 +8,17 @@
     <f:metadata>
         <f:event type="preRenderView" listener="#{camundaTaskForm.startTaskForm()}" />
     </f:metadata>
-    <h:head> </h:head>
+    <h:head>
+        <title>GTD | Delegieren</title>
+    </h:head>
     <h:body>
-        <div>
-            <h:form>
-                <p>Titel:<br/>
-                #{personAuswaehlenController.getTaskDAO(processVariables['taskId']).title}<br/>
-                Beschreibung:<br/>
-                #{personAuswaehlenController.getTaskDAO(processVariables['taskId']).description}<br/>
-                <br/>
-                Mitarbeiter auswählen:<br/></p>
+        <div id="container" style="margin:0px auto; width:50%;">
+            <h5>Titel:</h5>
+            <p>#{personAuswaehlenController.getTaskDAO(processVariables['taskId']).title}</p>
+            <h5>Beschreibung:</h5>
+            <p>#{personAuswaehlenController.getTaskDAO(processVariables['taskId']).description}</p>
+            <h4>Mitarbeiter auswählen:</h4>
+            <h:form id="person_auswaehlen_form">
                 <h:selectOneMenu value="#{processVariables['assignedUserId']}" >
                     <f:selectItems value="#{personAuswaehlenController.getMitarbeiterUserList()}" var="_user" 
                 	itemLabel="#{_user.name}" itemValue="#{_user.id}"/>

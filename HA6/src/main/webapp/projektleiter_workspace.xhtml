@@ -12,21 +12,25 @@
   		<title>GTD | Projektleiter Workspace</title>
     </h:head>
     <h:body>
-        <h:form id="workspace">
-        	<div id="login_info" align="right">
+    	<div align="right">
+            <h:form id="login_info_form">
         		<p>Eingellogt hat sich: <i>#{projektleiterWorkspaceController.getUserName(processVariables['loggedUserId'])}</i></p>
                 <h:commandButton id="logout_button" value="Logout" action="#{projektleiterWorkspaceController.logoutAction()}" />
-        	</div>
-            <div id="container" style="margin:0px auto; width:70%;">
-                <div id="column1" style="float:left; margin:0; width:50%">
+            </h:form>
+    	</div>
+        <div id="container" style="margin:0px auto; width:70%;">
+            <div id="column1" style="float:left; margin:0; width:50%">
+                <h:form id="review_form">
                     <h3>Task überprüfen</h3>
                     <h:selectOneMenu id="tasks_for_review_dropdown" value="#{processVariables['taskId']}" >
-                        <f:selectItems value="#{projektleiterWorkspaceController.getNotReviewedTasks()}" var="_task" 
-                        itemLabel="#{_task.title}" itemValue="#{_task.id}"/>
+                    <f:selectItems value="#{projektleiterWorkspaceController.getNotReviewedTasks()}" var="_task" 
+                    itemLabel="#{_task.title}" itemValue="#{_task.id}"/>
                     </h:selectOneMenu>
-                    <h:commandButton id="review_button" value="überprüfen" action="#{projektleiterWorkspaceController.ueberpruefenAction()}" />                    
-                </div>
-                <div id="column2" style="float:left; margin:0; width:50%;" >
+                    <h:commandButton id="review_button" value="überprüfen" action="#{projektleiterWorkspaceController.ueberpruefenAction()}" />
+                </h:form>                        
+            </div>
+            <div id="column2" style="float:left; margin:0; width:50%;" >
+                <h:form id="new_task_form">
                     <h3>Neuen Task anlegen</h3>
                     <p>Titel eingeben</p>
                     <h:inputText id="title_box" value="#{processVariables['title']}" required="true" />
@@ -35,9 +39,9 @@
                     <br />
                     <br />
                     <h:commandButton id="newtask_button" value="erstellen" action="#{projektleiterWorkspaceController.aufnehmenAction()}" />
-                </div>
-            </div> 
-        </h:form>
+                </h:form>
+            </div>
+        </div> 
     </h:body>
 </f:view>
 </html>

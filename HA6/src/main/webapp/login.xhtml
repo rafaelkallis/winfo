@@ -12,25 +12,28 @@
 		<title>GTD | Login</title>
 	</h:head>
   	<h:body>
-  		<h:form>
-	  		<div id="container" style="margin:0px auto; width:70%;">
-	  			<div id="column1" style="float:left; margin:0; width:50%">
-					<h3>Login</h3>
+  		<div id="container" style="margin:0px auto; width:70%;">
+  			<div id="column1" style="float:left; margin:0; width:50%">
+  				<h:form id="login_form">
+	  				<h3>Login</h3>
 					<h:selectOneMenu value="#{processVariables['loggedUserId']}" >
 						<f:selectItems value="#{loginController.getUsers()}" var="_user" itemLabel="#{_user.name}" itemValue="#{_user.id}"/>
 					</h:selectOneMenu>
 					<h:commandButton id="login_button" value="Login" action="#{loginController.login()}" />
-				</div>
-				<div id="column2" style="float:left; margin:0; width:50%;" >
+  				</h:form>		
+			</div>
+			<div id="column2" style="float:left; margin:0; width:50%;" >
+				<h:form id="register_form">
 					<h3>Registrieren</h3>
 					<label>Name:</label>
-					<h:inputText value="#{processVariables['userName']}" required="true" /><br />
+					<h:inputText value="#{processVariables['userName']}" required="true" />
+					<br />
 					<label>Projektleiter</label>
 					<h:selectBooleanCheckbox value="#{processVariables['isProjektleiter']}" /><br />
 					<h:commandButton id="register_button" value="Registrieren" action="#{loginController.register(processVariables['userName'],processVariables['isProjektleiter'])}" />
-				</div>
-	  		</div>	
-		</h:form>
+				</h:form>
+			</div>
+  		</div>	
   	</h:body>
 </f:view>
 </html>
