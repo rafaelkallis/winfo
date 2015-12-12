@@ -12,15 +12,15 @@
         <title>GTD | Mitarbeiter Workspace</title>
     </h:head>
     <h:body>
-        <h:form>
+        <h:form id="workspace">
             <div id="login_info" align="right">
                 <p>Eingellogt hat sich: <i>#{mitarbeiterWorkspaceController.getUserName(processVariables['loggedUserId'])}</i></p>
-                <h:commandButton value="Logout" action="#{mitarbeiterWorkspaceController.logoutAction()}" />
+                <h:commandButton id="logout_buuton" value="Logout" action="#{mitarbeiterWorkspaceController.logoutAction()}" />
             </div>
             <div id="container" style="margin:0px auto; width:70%;">
                 <div id="column1" style="float:left; margin:0; width:50%">
                     <h3>Task auswählen</h3>
-                    <h:selectOneMenu value="#{processVariables['taskId']}" >
+                    <h:selectOneMenu id="tasks_dropdown" value="#{processVariables['taskId']}" >
                         <f:selectItems value="#{mitarbeiterWorkspaceController.getUserTaskList(processVariables['loggedUserId'])}" var="_task" 
                         itemLabel="#{_task.title}" itemValue="#{_task.id}"/>
                     </h:selectOneMenu>
@@ -31,9 +31,9 @@
                 <div id="column2" style="float:left; margin:0; width:50%;" >
                     <h3>Neuen Task anlegen</h3>
                     <p>Titel eingeben</p>
-                    <h:inputText value="#{processVariables['title']}" required="true" />
+                    <h:inputText id="title_box" value="#{processVariables['title']}" required="true" />
                     <p>Beschreibung eingeben</p>
-                    <h:inputText value="#{processVariables['description']}" required="true"/>
+                    <h:inputText id="description_box" value="#{processVariables['description']}" required="true"/>
                     <br />
                     <br />
                     <h:commandButton id="newtask_button" value="erstellen" action="#{mitarbeiterWorkspaceController.aufnehmenAction()}" />

@@ -12,26 +12,26 @@
   		<title>GTD | Projektleiter Workspace</title>
     </h:head>
     <h:body>
-        <h:form>
+        <h:form id="workspace">
         	<div id="login_info" align="right">
         		<p>Eingellogt hat sich: <i>#{projektleiterWorkspaceController.getUserName(processVariables['loggedUserId'])}</i></p>
-                <h:commandButton value="Logout" action="#{projektleiterWorkspaceController.logoutAction()}" />
+                <h:commandButton id="logout_button" value="Logout" action="#{projektleiterWorkspaceController.logoutAction()}" />
         	</div>
             <div id="container" style="margin:0px auto; width:70%;">
                 <div id="column1" style="float:left; margin:0; width:50%">
                     <h3>Task überprüfen</h3>
-                    <h:selectOneMenu value="#{processVariables['taskId']}" >
+                    <h:selectOneMenu id="tasks_for_review_dropdown" value="#{processVariables['taskId']}" >
                         <f:selectItems value="#{projektleiterWorkspaceController.getNotReviewedTasks()}" var="_task" 
                         itemLabel="#{_task.title}" itemValue="#{_task.id}"/>
                     </h:selectOneMenu>
-                    <h:commandButton value="überprüfen" action="#{projektleiterWorkspaceController.ueberpruefenAction()}" />                    
+                    <h:commandButton id="review_button" value="überprüfen" action="#{projektleiterWorkspaceController.ueberpruefenAction()}" />                    
                 </div>
                 <div id="column2" style="float:left; margin:0; width:50%;" >
                     <h3>Neuen Task anlegen</h3>
                     <p>Titel eingeben</p>
-                    <h:inputText value="#{processVariables['title']}" required="true" />
+                    <h:inputText id="title_box" value="#{processVariables['title']}" required="true" />
                     <p>Beschreibung eingeben</p>
-                    <h:inputText value="#{processVariables['description']}" required="true"/>
+                    <h:inputText id="description_box" value="#{processVariables['description']}" required="true"/>
                     <br />
                     <br />
                     <h:commandButton id="newtask_button" value="erstellen" action="#{projektleiterWorkspaceController.aufnehmenAction()}" />
