@@ -1,5 +1,6 @@
 package we.are.awesome;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -12,7 +13,16 @@ public class PersonAuswaehlenController extends Controller{
 	
 	public void submit(){
 		
-		super.completeTask();
+		this.completeTask();
+	}
+	
+	private void completeTask(){
+		
+		try {
+			this.taskForm.completeTask();
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
 	}
 	
 	public TaskDAO getTaskDAO(Long taskId){

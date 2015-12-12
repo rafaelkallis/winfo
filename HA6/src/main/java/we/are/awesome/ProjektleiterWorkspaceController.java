@@ -2,6 +2,7 @@ package we.are.awesome;
 
 import javax.ejb.Stateless;
 import javax.inject.Named;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.TypedQuery;
@@ -13,19 +14,28 @@ public class ProjektleiterWorkspaceController extends Controller {
 	public void aufnehmenAction(){
 
 		super.businessProcess.setVariable("actionProjektleiterWorkspace","aufnehmen");
-		super.completeTask();
+		this.completeTask();
 	}
 
 	public void ueberpruefenAction(){
 
 		super.businessProcess.setVariable("actionProjektleiterWorkspace","ueberpruefen");	
-		super.completeTask();
+		this.completeTask();
 	}
 
 	public void logoutAction(){
 
 		super.businessProcess.setVariable("actionProjektleiterWorkspace","logout");
-		super.completeTask();
+		this.completeTask();
+	}
+	
+	private void completeTask(){
+		
+		try {
+			this.taskForm.completeTask();
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
 	}
 	
 	public List<TaskDAO> getNotReviewedTasks(){

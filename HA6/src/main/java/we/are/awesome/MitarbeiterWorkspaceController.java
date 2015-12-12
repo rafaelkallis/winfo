@@ -1,5 +1,6 @@
 package we.are.awesome;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -13,39 +14,40 @@ public class MitarbeiterWorkspaceController extends Controller{
 	public void zurueckweisenAction(){
 		
 		super.businessProcess.setVariable("actionMitarbeiterWorkspace", "zurueckweisen");
-		super.completeTask();
+		this.completeTask();
 	}
 
 	public void bearbeitenAction(){
 		
 		super.businessProcess.setVariable("actionMitarbeiterWorkspace", "bearbeiten");
-		super.completeTask();
-	}
-
-	//TODO
-	public void verschiebenAction(){
-		
-		super.businessProcess.setVariable("actionMitarbeiterWorkspace", "verschieben");
-		super.completeTask();
+		this.completeTask();
 	}
 
 	public void aufnehmenAction(){
 		
 		super.businessProcess.setVariable("actionMitarbeiterWorkspace", "aufnehmen");
-		super.completeTask();
+		this.completeTask();
 	}
 
 	public void logoutAction(){
 		
 		super.businessProcess.setVariable("actionMitarbeiterWorkspace","logout");
-		super.completeTask();
+		this.completeTask();
 	}
 	
-	public List<TaskDAO> getUserTaskList(){
+	private void completeTask(){
+		
+		try {
+			this.taskForm.completeTask();
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	public List<TaskDAO> getUserTaskList(Long loggedUserId){
 		
 		List<TaskDAO> taskList = new ArrayList<TaskDAO>();
-		Long userId = (Long)super.businessProcess.getVariable("loggedUserId");
-		TypedQuery<TaskEntity> query = entityManager.createQuery("SELECT t FROM TaskEntity t WHERE (t.assignedUserId = :userId OR t.isFreierTask = TRUE) AND t.isDone = FALSE",TaskEntity.class).setParameter("userId",userId);
+		TypedQuery<TaskEntity> query = entityManager.createQuery("SELECT t FROM TaskEntity t WHERE (t.assignedUserId = :loggedUserId OR t.isFreierTask = TRUE) AND t.isDone = FALSE",TaskEntity.class).setParameter("loggedUserId",loggedUserId);
 		List<TaskEntity> rs = query.getResultList();
 		for(TaskEntity taskEntity : rs){
 			taskList.add(new TaskDAO(taskEntity));
