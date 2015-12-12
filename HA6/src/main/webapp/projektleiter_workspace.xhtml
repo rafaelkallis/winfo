@@ -12,35 +12,34 @@
   
     </h:head>
     <h:body>
-        <div id="leftdock" align="left">
-            <h:form id="projektleiterForm">
-
-                <label>Task zum überprüfen auswählen</label>
-                <br/>
-                <h:selectOneMenu value="#{processVariables['taskId']}" >
-                    <f:selectItems value="#{projektleiterWorkspaceController.getNotReviewedTasks()}" var="_task" 
-                    itemLabel="#{_task.title}" itemValue="#{_task.id}"/>
-                </h:selectOneMenu>
-    	        <br/>
-                <h:commandButton value="Task überprüfen" action="#{projektleiterWorkspaceController.ueberpruefenAction()}" />
-          	    <br/>
+        <h:form>
+            <div id="container" style="margin:0px auto; width:70%;">
+                <div id="column1" style="float:left; margin:0; width:50%">
+                    <h3>Task zum überprüfen auswählen</h3>
+                    <h:selectOneMenu value="#{processVariables['taskId']}" >
+                        <f:selectItems value="#{projektleiterWorkspaceController.getNotReviewedTasks()}" var="_task" 
+                        itemLabel="#{_task.title}" itemValue="#{_task.id}"/>
+                    </h:selectOneMenu>
+                    <h:commandButton value="Task überprüfen" action="#{projektleiterWorkspaceController.ueberpruefenAction()}" />                    
+                </div>
+                <div id="column2" style="float:left; margin:0; width:50%;" >
+                     <label>Neuer Task anlegen</label>
+                    <br/>
+                    <label>Titel eingeben</label>
+                    <h:inputText value="#{processVariables['title']}" required="true" />
+                    <br/>
+                    <label>Beschreibung eingeben</label>
+                    <h:inputText value="#{processVariables['description']}" required="true"/>
+                    <br/>
+                    <h:commandButton id="newtask_button" value="Neuer Task erstellen" action="#{projektleiterWorkspaceController.aufnehmenAction()}" />
+                    <br/>
+                </div>
+            </div> 
+            <footer>
+                <p>You are logged in as: <i>#{projektleiterWorkspaceController.getUserName(processVariables['loggedUserId']</i></p>
                 <h:commandButton value="Logout" action="#{projektleiterWorkspaceController.logoutAction()}" />
-            </h:form>
-        </div>
-        <div id="rightdock" align="right" >
-            <h:form >
-                <label>Neuer Task anlegen</label>
-                <br/>
-                <label>Titel eingeben</label>
-                <h:inputText value="#{processVariables['title']}" required="true" />
-                <br/>
-                <label>Beschreibung eingeben</label>
-                <h:inputText value="#{processVariables['description']}" required="true"/>
-                <br/>
-                <h:commandButton id="newtask_button" value="Neuer Task erstellen" action="#{projektleiterWorkspaceController.aufnehmenAction()}" />
-                <br/>
-            </h:form>
-        </div>
+            </footer> 
+        </h:form>
     </h:body>
 </f:view>
 </html>
