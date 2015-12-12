@@ -8,34 +8,29 @@
   	<f:metadata>
     	<f:event type="preRenderView" listener="#{camundaTaskForm.startProcessInstanceByKeyForm()}" />
  	</f:metadata>
-	<h:head></h:head>
+	<h:head>
+		<title>GTD|Login</title>
+	</h:head>
   	<h:body>
-		<div id="leftdock" align="left">
-			<h:form id="userLoginForm">
-				<label >Login</label>
-				<br/>
-				<h:selectOneMenu value="#{processVariables['loggedUserId']}" >
-					<f:selectItems value="#{loginController.getUsers()}" var="_user" itemLabel="#{_user.name}" itemValue="#{_user.id}"/>
-				</h:selectOneMenu>
-				<br/>
-				<h:commandButton id="login_button" value="Login" action="#{loginController.login()}" />
-			</h:form>
-		</div>
-		<div id="rightdock" align="right" >
-			<h:form id="userRegisterForm">
-				<label>Registrieren</label>
-				<br/>
-				<label>Name eingeben</label>
-				<h:inputText value="#{processVariables['userName']}" required="true" />
-				<br/>
-				<br/>
-				<label>Projektleiter</label>
-				<h:selectBooleanCheckbox value="#{processVariables['isProjektleiter']}" />
-				<br/>
-				<h:commandButton id="register_button" value="Registrieren" action="#{loginController.register(processVariables['userName'],processVariables['isProjektleiter'])}" />
-				<br/>
-			</h:form>
-		</div>
+  		<:form>
+	  		<div id="container" style="margin:0px auto; width:70%;">
+	  			<div id="column1" style="float:left; margin:0; width:50%">
+					<h3>Login</h3>
+					<h:selectOneMenu value="#{processVariables['loggedUserId']}" >
+						<f:selectItems value="#{loginController.getUsers()}" var="_user" itemLabel="#{_user.name}" itemValue="#{_user.id}"/>
+					</h:selectOneMenu>
+					<h:commandButton id="login_button" value="Login" action="#{loginController.login()}" />
+				</div>
+				<div id="column2" style="float:left; margin:0; width:50%;" >
+					<h3>Registrieren</h3>
+					<label>Name:</label>
+					<h:inputText value="#{processVariables['userName']}" required="true" /><br />
+					<label>Projektleiter</label>
+					<h:selectBooleanCheckbox value="#{processVariables['isProjektleiter']}" /><br />
+					<h:commandButton id="register_button" value="Registrieren" action="#{loginController.register(processVariables['userName'],processVariables['isProjektleiter'])}" />
+				</div>
+	  		</div>	
+		</h:form>
   	</h:body>
 </f:view>
 </html>
