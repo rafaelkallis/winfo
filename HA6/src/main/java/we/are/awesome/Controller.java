@@ -1,6 +1,5 @@
 package we.are.awesome;
 
-import java.io.IOException;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -26,14 +25,5 @@ public abstract class Controller {
 	protected TaskEntity getTaskEntity(Long id){
 		
 		return this.entityManager.find(TaskEntity.class, id);
-	}
-	
-	protected void completeTask(){
-		
-		try {
-			this.taskForm.completeTask();
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		}
 	}
 }
