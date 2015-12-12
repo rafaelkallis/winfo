@@ -8,24 +8,14 @@
     <f:metadata>
         <f:event type="preRenderView" listener="#{camundaTaskForm.startTaskForm()}" />
     </f:metadata>
-    <h:head> </h:head>
+    <h:head>
+  
+    </h:head>
     <h:body>
-        <h1></h1>
-        <div id="leftdock" align="left">
-            <h:form id="bearbeitenForm">
-                <label>Ausgewählter Task</label>
-                <br/>
-                <label>Titel:</label>
-                <h:outputLabel value="#{taskBearbeitenController.getTaskDAO(processVariables['taskId']).title}"/>
-    	    </h:form>
-            <br/>
-            <label >Beschreibung: </label>
-            <h:outputLabel value="#{taskBearbeitenController.getTaskDAO(processVariables['taskId']).description}"/>
-            <br/>          
-    	    <br/>
-            <h:commandButton id="bearbeiten_button" value="Bearbeiten" action="#{taskBearbeitenController.submit()}" />
-          	<br/>
-        </div>
+	    <h:form id="task_controls">
+	    	<h:commandButton id="postpone_button" value="Verschieben" action="#{taskBearbeitenController.postpone()}" />
+	        <h:commandButton id="done_button" value="Fertig" action="#{taskBearbeitenController.complete(processVariables['taskId'])}" />
+	    </h:form>
     </h:body>
 </f:view>
 </html>
