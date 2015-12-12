@@ -8,38 +8,38 @@
     <f:metadata>
         <f:event type="preRenderView" listener="#{camundaTaskForm.startTaskForm()}" />
     </f:metadata>
-    <h:head></h:head>
+    <h:head>
+        <title>GTD | Mitarbeiter Workspace</title>
+    </h:head>
     <h:body>
-        <div id="leftdock" align="left">
-            <h:form>
-                <label>Task auswählen</label>
-                <br/>
-                <h:selectOneMenu value="#{processVariables['taskId']}" >
-                    <f:selectItems value="#{mitarbeiterWorkspaceController.getUserTaskList(processVariables['loggedUserId'])}" var="_task" 
-                    itemLabel="#{_task.title}" itemValue="#{_task.id}"/>
-                </h:selectOneMenu>
-    	        <br/>
-                <h:commandButton id="zurueckweisen_button" value="Zurückweisen" action="#{mitarbeiterWorkspaceController.zurueckweisenAction()}" />
-          	    <br/>
-                <h:commandButton id="bearbeiten_button" value="Bearbeiten" action="#{mitarbeiterWorkspaceController.bearbeitenAction()}" />
-          	    <br/>
-                <h:commandButton id="logout_button" value="Logout" action="#{mitarbeiterWorkspaceController.logoutAction()}" />
-            </h:form>
-        </div>
-        <div id="rightdock" align="right" >
-            <h:form>
-                <label>Neuer Task anlegen</label>     
-                <br/>
-                <label>Titel eingeben</label>
-                <h:inputText value="#{processVariables['title']}" required="true" />
-                <br/>
-                <label>Beschreibung eingeben</label>
-                <h:inputText value="#{processVariables['description']}" required="true" />
-                <br/>
-                <h:commandButton id="newtask_button" value="Neuer Task erstellen" action="#{mitarbeiterWorkspaceController.aufnehmenAction()}" />
-                <br/>
-            </h:form>
-        </div>
+        <h:form>
+            <div id="login_info" align="right">
+                <p>Eingellogt hat sich: <i>#{mitarbeiterWorkspaceController.getUserName(processVariables['loggedUserId'])}</i></p>
+                <h:commandButton value="Logout" action="#{mitarbeiterWorkspaceController.logoutAction()}" />
+            </div>
+            <div id="container" style="margin:0px auto; width:70%;">
+                <div id="column1" style="float:left; margin:0; width:50%">
+                    <h3>Task auswählen</h3>
+                    <h:selectOneMenu value="#{processVariables['taskId']}" >
+                        <f:selectItems value="#{mitarbeiterWorkspaceController.getUserTaskList(processVariables['loggedUserId'])}" var="_task" 
+                        itemLabel="#{_task.title}" itemValue="#{_task.id}"/>
+                    </h:selectOneMenu>
+                    <br/>
+                    <h:commandButton id="bearbeiten_button" value="Bearbeiten" action="#{mitarbeiterWorkspaceController.bearbeitenAction()}" />
+                    <h:commandButton id="zurueckweisen_button" value="Zurückweisen" action="#{mitarbeiterWorkspaceController.zurueckweisenAction()}" />                
+                </div>
+                <div id="column2" style="float:left; margin:0; width:50%;" >
+                    <h3>Neuen Task anlegen</h3>
+                    <p>Titel eingeben</p>
+                    <h:inputText value="#{processVariables['title']}" required="true" />
+                    <p>Beschreibung eingeben</p>
+                    <h:inputText value="#{processVariables['description']}" required="true"/>
+                    <br />
+                    <br />
+                    <h:commandButton id="newtask_button" value="erstellen" action="#{mitarbeiterWorkspaceController.aufnehmenAction()}" />
+                </div>
+            </div> 
+        </h:form>
     </h:body>
 </f:view>
 </html>
