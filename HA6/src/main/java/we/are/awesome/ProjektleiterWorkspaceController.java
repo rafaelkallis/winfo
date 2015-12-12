@@ -38,6 +38,10 @@ public class ProjektleiterWorkspaceController extends Controller {
 		}
 	}
 	
+	public String getUserName(Long userId){
+		return super.getUserEntity(userId).getName();
+	}
+	
 	public List<TaskDAO> getNotReviewedTasks(){
 
 		List<TaskDAO> taskList = new ArrayList<TaskDAO>();
