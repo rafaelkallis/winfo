@@ -11,18 +11,19 @@ import javax.persistence.TypedQuery;
 @Stateless
 public class PersonAuswaehlenController extends Controller{
 	
-	public void submit(){
+	public void assign(Long userId,Long taskId){
 		
-		this.completeTask();
-	}
-	
-	private void completeTask(){
+		TaskEntity task = super.getTaskEntity(taskId);
+		task.setAssignedUserId(userId);
+		
+		super.entityManager.merge(task);
+		super.entityManager.flush();
 		
 		try {
 			this.taskForm.completeTask();
 		} catch (IOException e) {
 			throw new RuntimeException(e);
-		}
+		}	
 	}
 	
 	public TaskDAO getTaskDAO(Long taskId){
@@ -30,7 +31,7 @@ public class PersonAuswaehlenController extends Controller{
 		return new TaskDAO(super.getTaskEntity(taskId));
 	}
 	
-	public List<UserDAO> getMitarbeiterUserList(){
+	public List<UserDAO> getMitarbeiterList(){
 
 		List<UserDAO> userList = new ArrayList<UserDAO>();	
 		TypedQuery<UserEntity> query = super.entityManager.createQuery("SELECT u FROM UserEntity u WHERE u.isProjektleiter = FALSE",UserEntity.class);

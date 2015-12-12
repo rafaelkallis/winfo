@@ -22,15 +22,16 @@
             <div id="column1" style="float:left; margin:0; width:50%">
                 <h:form id="task_form">
                     <h3>Task auswählen</h3>
-                    <h:selectOneMenu id="tasks_dropdown" value="#{processVariables['taskId']}" >
+                    <h:outputLabel value="Keine Tasks vorhanden!" rendered="#{mitarbeiterWorkspaceController.getUserTaskList(processVariables['loggedUserId']).size() == 0}"/>
+                    <h:selectOneMenu id="tasks_dropdown" value="#{processVariables['taskId']}" rendered="#{mitarbeiterWorkspaceController.getUserTaskList(processVariables['loggedUserId']).size() > 0}">
                         <f:selectItems value="#{mitarbeiterWorkspaceController.getUserTaskList(processVariables['loggedUserId'])}" var="_task" 
                         itemLabel="#{_task.title}" itemValue="#{_task.id}"/>
                     </h:selectOneMenu>
                     <br/>
-                    <h:commandButton id="bearbeiten_button" value="Bearbeiten" action="#{mitarbeiterWorkspaceController.bearbeitenAction()}" />
-                    <h:commandButton id="zurueckweisen_button" value="Zurückweisen" action="#{mitarbeiterWorkspaceController.zurueckweisenAction()}" />                
-                </div>
+                    <h:commandButton id="bearbeiten_button" value="Bearbeiten" action="#{mitarbeiterWorkspaceController.bearbeitenAction()}" rendered="#{mitarbeiterWorkspaceController.getUserTaskList(processVariables['loggedUserId']).size() > 0}"/>
+                    <h:commandButton id="zurueckweisen_button" value="Zurückweisen" action="#{mitarbeiterWorkspaceController.zurueckweisenAction()}" rendered="#{mitarbeiterWorkspaceController.getUserTaskList(processVariables['loggedUserId']).size() > 0}"/>                
                 </h:form>
+            </div>
             <div id="column2" style="float:left; margin:0; width:50%;" >
                 <h:form id="new_task_form">
                     <h3>Neuen Task anlegen</h3>

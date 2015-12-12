@@ -22,11 +22,12 @@
             <div id="column1" style="float:left; margin:0; width:50%">
                 <h:form id="review_form">
                     <h3>Task überprüfen</h3>
-                    <h:selectOneMenu id="tasks_for_review_dropdown" value="#{processVariables['taskId']}" >
-                    <f:selectItems value="#{projektleiterWorkspaceController.getNotReviewedTasks()}" var="_task" 
-                    itemLabel="#{_task.title}" itemValue="#{_task.id}"/>
+                    <h:outputLabel value="Keine Tasks zum überprüfen vorhanden!" rendered="#{projektleiterWorkspaceController.getNotReviewedTasks().size() == 0}"/>
+                    <h:selectOneMenu id="tasks_for_review_dropdown" value="#{processVariables['taskId']}" rendered="#{projektleiterWorkspaceController.getNotReviewedTasks().size() > 0}">
+                    	<f:selectItems value="#{projektleiterWorkspaceController.getNotReviewedTasks()}" var="_task" 
+                   	 	itemLabel="#{_task.title}" itemValue="#{_task.id}"/>
                     </h:selectOneMenu>
-                    <h:commandButton id="review_button" value="überprüfen" action="#{projektleiterWorkspaceController.ueberpruefenAction()}" />
+                    <h:commandButton id="review_button" value="überprüfen" action="#{projektleiterWorkspaceController.ueberpruefenAction()}" rendered="#{projektleiterWorkspaceController.getNotReviewedTasks().size() > 0}"/>
                 </h:form>                        
             </div>
             <div id="column2" style="float:left; margin:0; width:50%;" >

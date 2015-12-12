@@ -16,10 +16,11 @@
   			<div id="column1" style="float:left; margin:0; width:50%">
   				<h:form id="login_form">
 	  				<h3>Login</h3>
-					<h:selectOneMenu value="#{processVariables['loggedUserId']}" >
+	  				<h:outputLabel value="Keine Users vorhanded!" rendered="#{loginController.getUsers().size() == 0}"/>
+					<h:selectOneMenu value="#{processVariables['loggedUserId']}" rendered="#{loginController.getUsers().size() > 0}">
 						<f:selectItems value="#{loginController.getUsers()}" var="_user" itemLabel="#{_user.name}" itemValue="#{_user.id}"/>
 					</h:selectOneMenu>
-					<h:commandButton id="login_button" value="Login" action="#{loginController.login()}" />
+					<h:commandButton id="login_button" value="Login" action="#{loginController.login()}" rendered="#{loginController.getUsers().size() > 0}"/>
   				</h:form>		
 			</div>
 			<div id="column2" style="float:left; margin:0; width:50%;" >
